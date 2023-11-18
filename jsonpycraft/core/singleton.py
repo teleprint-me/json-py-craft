@@ -1,5 +1,27 @@
 """
 jsonpycraft/pattern/singleton.py
+
+This module provides a base class and metaclass for implementing the Singleton pattern.
+
+The Singleton pattern ensures that only one instance of a class is created throughout the lifetime of an application.
+
+Example Usage:
+    from jsonpycraft.pattern.singleton import Singleton
+
+    class MySingleton(Singleton):
+        def __init__(self, data):
+            self.data = data
+
+    # Creating instances of MySingleton
+    instance1 = MySingleton("Instance 1")
+    instance2 = MySingleton("Instance 2")
+
+    # Both instances point to the same object
+    print(instance1 is instance2)  # Output: True
+    print(instance1.data)  # Output: "Instance 2"
+
+Note:
+- Subclasses should not override the `__new__` method.
 """
 
 
