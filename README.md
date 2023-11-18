@@ -1,10 +1,12 @@
 # JsonPyCraft
 
-<figure align="center">
-    <img src="assets/logo.png"
-         alt="JsonPyCraft Artwork Image"
-         width="256" height="256">
-    <figcaption>JsonPyCraft - A Fusion of Python and JSON, symbolizing the toolkit's capability to manage intricate JSON data structures.</figcaption>
+<figure>
+    <p align="center">
+        <img src="assets/logo.png"
+            alt="JsonPyCraft Artwork Image"
+            width="256" height="256">
+        <figcaption>JsonPyCraft - A Fusion of Python and JSON, symbolizing the toolkit's capability to manage intricate JSON data structures.</figcaption>
+    </p>
 </figure>
 
 ## Description
