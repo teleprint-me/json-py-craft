@@ -1,0 +1,18 @@
+@startuml ConfigurationManager
+!theme blueprint
+
+' docs/puml/core/Singleton.puml
+
+class MetaSingleton extends Type {
+    ' Metaclass for implementing the Singleton pattern.
+    # Dict[Type, object] _instances
+    ' Call method invoked when a singleton class is instantiated.
+    # Dict[Type, object] __call__(cls, *args, **kwargs)
+    # MetaSingleton()
+}
+
+class Singleton extends MetaSingleton {
+    ' Base class for implementing the Singleton pattern.
+    # Singleton()
+}
+@enduml
