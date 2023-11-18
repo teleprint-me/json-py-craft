@@ -1,0 +1,38 @@
+{
+  "editor.defaultFormatter": null,
+  "editor.stickyTabStops": true,
+  "editor.tabCompletion": "on",
+  "editor.wordWrap": "on",
+  "editor.fontSize": 12,
+  "editor.fontFamily": "'Noto Sans Mono', 'Source Code Pro', 'Droid Sans Mono'",
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "python.analysis.extraPaths": [
+    "${workspaceFolder}/.venv/bin",
+    "${workspaceFolder}/.venv/lib/python3.11/site-packages"
+  ],
+  "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
+  "python.languageServer": "Jedi",
+  "python.analysis.typeCheckingMode": "strict",
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter",
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": false,
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": true
+    }
+  },
+  "isort.args": ["--profile", "black"]
+}
