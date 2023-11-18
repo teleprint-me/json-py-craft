@@ -32,12 +32,16 @@ Note:
 
 import logging
 import sys
+from typing import IO, Optional
 
 LOGGER_FORMAT = "%(asctime)s - %(filename)s:%(lineno)d - %(levelname)s - %(message)s"
 
 
 def get_default_logger(
-    name: str = None, level: int = logging.DEBUG, format: str = LOGGER_FORMAT
+    name: Optional[str] = None,
+    level: Optional[int] = logging.DEBUG,
+    stream: Optional[IO] = sys.stdout,
+    fmt: Optional[str] = LOGGER_FORMAT,
 ):
     """
     Get a default logger instance with specified configuration.
@@ -45,15 +49,16 @@ def get_default_logger(
     Args:
         name (str, optional): The name of the logger (default is None, which uses the root logger).
         level (int, optional): The log level for the logger (default is logging.DEBUG).
-        format (str, optional): The log message format (default is LOGGER_FORMAT).
+        stream (Optional[IO], optional): The stream where log messages should be written (default is sys.stdout).
+        fmt (str, optional): The log message format (default is LOGGER_FORMAT).
 
     Returns:
         Logger: A configured logger instance.
     """
     logger = logging.getLogger(name)
     if not logger.hasHandlers():
-        handler = logging.StreamHandler(stream=sys.stdout)
-        formatter = logging.Formatter(format)
+        handler = logging.StreamHandler(stream=stream)
+        formatter = logging.Formatter(fmt)
         handler.setFormatter(formatter)
         logger.addHandler(handler)
         logger.setLevel(level)
