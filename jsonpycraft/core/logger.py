@@ -1,40 +1,59 @@
 """
 jsonpycraft/core/logger.py
+
+This module provides a utility function for configuring and obtaining a
+default logger instance.
+
+The `get_default_logger` function retrieves or creates a default logger
+instance with specified configuration. It allows customization of the
+logger's name and log level.
+
+Usage:
+- Import this module to use the `get_default_logger` function.
+- Use the `get_default_logger` function to obtain a configured logger
+  instance for logging in your Python code.
+
+Example:
+
+    import logging
+    from jsonpycraft.core import logger
+
+    # Get a default logger with a custom name and log level
+    my_logger = logger.get_default_logger("MyLogger", logging.INFO)
+    my_logger.info("This is an info message.")
+
+Note:
+- If a logger with the specified `name` already exists, the function returns
+  the existing logger to ensure consistent logging across the application.
+- By default, log messages are written to the standard output (stdout) with a
+  log format that includes a timestamp, filename, line number, log level, and
+  the log message itself.
 """
+
 import logging
 import sys
 
 LOGGER_FORMAT = "%(asctime)s - %(filename)s:%(lineno)d - %(levelname)s - %(message)s"
 
 
-def get_default_logger(name=None, level=logging.DEBUG):
+def get_default_logger(
+    name: str = None, level: int = logging.DEBUG, format: str = LOGGER_FORMAT
+):
     """
     Get a default logger instance with specified configuration.
-
-    This function retrieves or creates a default logger instance configured with the specified logger name and log level. If a logger with the same name already exists, it returns the existing logger; otherwise, it creates a new one.
 
     Args:
         name (str, optional): The name of the logger (default is None, which uses the root logger).
         level (int, optional): The log level for the logger (default is logging.DEBUG).
+        format (str, optional): The log message format (default is LOGGER_FORMAT).
 
     Returns:
         Logger: A configured logger instance.
-
-    Example:
-        To get a default logger, you can use this function as follows:
-        ```
-        logger = get_default_logger("MyLogger", logging.INFO)
-        logger.info("This is an info message.")
-        ```
-
-    Note:
-        - If the logger with the specified `name` already exists, it returns the existing logger to ensure consistent logging across the application.
-        - By default, log messages are written to the standard output (stdout), and the log format includes timestamp, filename, line number, log level, and the log message itself.
     """
     logger = logging.getLogger(name)
     if not logger.hasHandlers():
         handler = logging.StreamHandler(stream=sys.stdout)
-        formatter = logging.Formatter(LOGGER_FORMAT)
+        formatter = logging.Formatter(format)
         handler.setFormatter(formatter)
         logger.addHandler(handler)
         logger.setLevel(level)
