@@ -1,4 +1,4 @@
-# JsonPyCraft
+# JSONPyCraft
 
 <figure>
     <p align="center">
