@@ -25,4 +25,7 @@ class JSONBaseTemplate extends Protocol {
     ' Create the directory for the JSON file. Returns True if successful, False otherwise.
     + bool make_directory()
 }
+
+JSONBaseTemplate <|-- JSONListTemplate
+JSONBaseTemplate <|-- JSONMapTemplate
 @enduml
