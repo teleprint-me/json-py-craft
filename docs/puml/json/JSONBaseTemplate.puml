@@ -1,0 +1,28 @@
+@startuml JSONTemplate
+!theme blueprint
+
+' docs/puml/json/JSONBaseTemplate.puml
+
+class JSONBaseTemplate extends Protocol {
+    ' A base template class for working with JSON files.
+    ' JSONMap = Dict[str, Any]
+    ' JSONList = List[JSONMap]
+    ' JSONData = Union[JSONMap, JSONList]
+    - _file_path: Path
+    - _data: Optional[JSONData]
+    - _logger: Logger
+    + JSONBaseTemplate(file_path: str, initial_data: Optional[JSONData], logger: Optional[Logger])
+    ' Get the path to the JSON file.
+    # Path file_path
+    ' Load JSON data from the file into the _data attribute.
+    # Optional[JSONData] data
+    ' Save JSON data to the file. Returns True if successful, False otherwise.
+    + bool load_json()
+    ' Create a backup of the JSON file. Returns True if successful, False otherwise.
+    + bool save_json(data: Optional[JSONData], indent: int)
+    ' Create a backup of the JSON file. Returns True if successful, False otherwise.
+    + bool backup_json(indent: int)
+    ' Create the directory for the JSON file. Returns True if successful, False otherwise.
+    + bool make_directory()
+}
+@enduml
