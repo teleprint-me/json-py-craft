@@ -1,0 +1,38 @@
+@startuml JSONListTemplate
+!theme blueprint
+
+' docs/puml/json/JSONListTemplate.puml
+
+class JSONListTemplate extends JSONBaseTemplate {
+    ' A template class for managing a list of dictionaries in JSON files.
+    ' JSONMap = Dict[str, Any]
+    ' JSONList = List[JSONMap]
+    - JSONList _data
+    + JSONListTemplate(file_path: str, initial_data: Optional[JSONList], logger: Optional[Logger] = None)
+    ' Return the length of the internal data list.
+    # int length
+    ' Return a copy of the internal data list or None if empty.
+    # Optional[JSONList] data
+    ' Append a dictionary to the internal data list.
+    + bool append(item: JSONMap)
+    ' Insert a dictionary at a specific index.
+    + bool insert(index: int, item: JSONMap)
+    ' Get a dictionary from a specific index.
+    + Optional[JSONMap] get(index: int)
+    ' Update a dictionary at a specific index.
+    + bool update(index: int, item: JSONMap)
+    ' Remove a dictionary at a specific index.
+    + bool remove(index: int)
+    ' Pop a dictionary from a specific index.
+    + Optional[JSONMap] pop(index: int)
+    ' Clear the internal data list.
+    + bool clear()
+    ' NOTE: The following methods are TBD (To Be Decided).
+    ' Sort the list based on a key.
+    + bool sort(key: str, reverse: bool)
+    ' Filter the list based on a condition.
+    + Optional[JSONList] filter(condition: Callable[[JSONMap], bool])
+}
+
+JSONListTemplate <|.. SequenceManager
+@enduml
