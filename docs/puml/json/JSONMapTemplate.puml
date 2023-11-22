@@ -1,0 +1,34 @@
+@startuml JSONMapTemplate
+!theme blueprint
+
+' docs/puml/json/JSONMapTemplate.puml
+
+class JSONMapTemplate extends JSONBaseTemplate {
+    ' A template class for creating and managing a mapping of key-value pairs.
+    ' JSONMap = Dict[str, Any]
+    - JSONMap _data
+    + JSONMapTemplate(file_path: str, initial_data: Optional[JSONMap], logger: Optional[Logger])
+    ' Get a list of all keys in the mapping.
+    # List[str] keys
+    ' Get the underlying data structure of the mapping.
+    # JSONMap data
+    ' Create a new key-value pair in the mapping.
+    + bool create(key: str, value: Any)
+    ' Create a nested key-value pair in the mapping.
+    + bool create_nested(value: Any, *keys: str)
+    ' Read the value associated with a key in the mapping.
+    + Any read(key: str)
+    ' Read the value associated with a nested key hierarchy in the mapping.
+    + Any read_nested(*keys: str)
+    ' Update the value associated with a key in the mapping.
+    + bool update(key: str, value: Any)
+    ' Update the value associated with a nested key hierarchy in the mapping.
+    + bool update_nested(value: Any, *keys: str)
+    ' Delete a key-value pair from the mapping.
+    + bool delete(key: str)
+    ' Delete a nested key-value pair from the mapping.
+    + bool delete_nested(*keys: str)
+}
+
+JSONMapTemplate <|.. ConfigurationManager
+@enduml
