@@ -5,7 +5,8 @@ from copy import deepcopy
 from logging import Logger
 from typing import Optional
 
-from pair_programmer.json.base import JSONBaseTemplate, JSONList, JSONMap
+from jsonpycraft.core.types import JSONList, JSONMap
+from jsonpycraft.json.base import JSONBaseTemplate
 
 
 class JSONListTemplate(JSONBaseTemplate):
