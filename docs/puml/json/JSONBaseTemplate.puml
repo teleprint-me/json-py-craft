@@ -1,4 +1,4 @@
-@startuml JSONTemplate
+@startuml JSONBaseTemplate
 !theme blueprint
 
 ' docs/puml/json/JSONBaseTemplate.puml
