@@ -71,8 +71,8 @@ class JSONMapTemplate(JSONBaseTemplate):
         if key not in self._data:
             self._data[key] = value
             return True
-        else:
-            return False
+
+        return False
 
     def create_nested(self, value: Any, *keys: str) -> bool:
         """
@@ -98,8 +98,8 @@ class JSONMapTemplate(JSONBaseTemplate):
         if last_key not in data:
             data[last_key] = value
             return True
-        else:
-            return False
+
+        return False
 
     def read(self, key: str) -> Any:
         """
@@ -150,7 +150,7 @@ class JSONMapTemplate(JSONBaseTemplate):
         else:
             return self.create(key, value)
 
-    def update_nested(self, value: Any, *keys: str) -> bool:
+    def update_nested(self, value: Any, *keys: str, overwrite: bool = True) -> bool:
         """
         Update the value associated with a nested key hierarchy in the mapping.
 
@@ -159,25 +159,37 @@ class JSONMapTemplate(JSONBaseTemplate):
         Args:
             value (Any): The value to associate with the nested keys hierarchy.
             keys (str): The keys hierarchy for the nested value.
+            overwrite (bool): Overwrite exiting non-empty dictionaries. Default is True.
 
         Returns:
             bool: True if the value was updated, False if a new nested key-value pair was created.
         """
+        if not keys:
+            raise ValueError("At least one key is required")
+
         data = self._data
         last_key = keys[-1]
         keys = keys[:-1]
 
         for key in keys:
-            if isinstance(data, dict) and key in data:
-                data = data[key]
-            else:
-                return False
+            if not isinstance(key, (str, int)):
+                raise TypeError(f"Key {key} is not a valid type")
 
-        if isinstance(data, dict) and last_key in data:
-            data[last_key] = value
-            return True
-        else:
-            return self.create_nested(value, *keys)
+            if not isinstance(data, dict):
+                raise TypeError(
+                    f"Intermediate key '{key}' does not lead to a dictionary"
+                )
+
+            if key not in data or not isinstance(data[key], dict) or overwrite:
+                data[key] = {}
+
+            data = data[key]
+
+        if not isinstance(last_key, (str, int)):
+            raise TypeError(f"Last key {last_key} is not a valid type")
+
+        data[last_key] = value
+        return True
 
     def delete(self, key: str) -> bool:
         """
@@ -192,8 +204,8 @@ class JSONMapTemplate(JSONBaseTemplate):
         if key in self._data:
             del self._data[key]
             return True
-        else:
-            return False
+
+        return False
 
     def delete_nested(self, *keys: str) -> bool:
         """
@@ -218,5 +230,5 @@ class JSONMapTemplate(JSONBaseTemplate):
         if isinstance(data, dict) and last_key in data:
             del data[last_key]
             return True
-        else:
-            return False
+
+        return False
