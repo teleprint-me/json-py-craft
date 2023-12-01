@@ -13,28 +13,32 @@ A list of dictionaries, where each dictionary has string keys and values of any 
 ### `JSONData`
 A union type representing either `JSONMap` or `JSONList` for flexibility in JSON data representation.
 
-## Error Handling
+## File Handling Error Types
+
+### `FileError`
+A tuple of file-related error types, which includes:
+- `FileNotFoundError`: For handling cases where a file is not found.
+- `NotADirectoryError`: For errors related to directory issues.
+- `PermissionError`: For errors arising due to insufficient permissions.
+- `IsADirectoryError`: For handling directories where a file is expected.
+- `IOError`: For general input/output errors.
+
+## Custom Error Types for JSON Encoding and Decoding
 
 ### `EncodeError`
-Error types for JSON encoding:
+A tuple of error types for JSON encoding, including:
 - `TypeError`: Raised by `json.dump(s)` for encoding errors.
-- `FileNotFoundError`: Raised for file-related errors during encoding.
-- `NotADirectoryError`: Raised for directory-related errors during encoding.
-- `PermissionError`: Raised for permission-related errors during encoding.
+- Includes all errors defined in `FileError`.
 
 ### `DecodeError`
-Error types for JSON decoding:
-- `json.JSONDecodeError`: Raised by `json.load(s)` for decoding errors.
-- `FileNotFoundError`: Raised for file-related errors during decoding.
-- `NotADirectoryError`: Raised for directory-related errors during decoding.
-- `PermissionError`: Raised for permission-related errors during decoding.
+A tuple of error types for JSON decoding, including:
+- `json.JSONDecodeError`: Raised by `json.loads` for decoding errors.
+- Includes all errors defined in `FileError`.
 
 ### `JSONError`
-A unified set of error types for handling JSON-related errors, including both encoding and decoding errors.
+A unified set of error types for handling JSON-related errors. It includes both `EncodeError` and `DecodeError`.
 
 ## Usage
 - Import this module to use the custom types and error handling in your Python code.
 
-For detailed information and examples on how to use these custom types and error handling, refer to the module's source code.
-
-These updates enhance the documentation and readability of the `jsonpycraft/core/types.py` source file for better code comprehension.
+These updates expand error handling capabilities and enhance documentation for better comprehension and usability of the `jsonpycraft/core/types.py` module.
