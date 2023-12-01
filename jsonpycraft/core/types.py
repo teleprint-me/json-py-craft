@@ -12,9 +12,9 @@ File Handling Error Types:
 - FileError: A tuple of file-related error types, including FileNotFoundError, NotADirectoryError, PermissionError, IsADirectoryError, and IOError.
 
 Custom Error Types for JSON Encoding and Decoding:
-- EncodeError: A tuple of error types for JSON encoding, including TypeError (raised by json.dump(s)) and file-related errors.
+- EncodeError: A tuple of error types for JSON encoding, including TypeError (raised by json.dump(s)).
 
-- DecodeError: A tuple of error types for JSON decoding, including json.JSONDecodeError (raised by json.loads) and file-related errors.
+- DecodeError: A tuple of error types for JSON decoding, including json.JSONDecodeError (raised by json.loads).
 
 - JSONError: A unified set of error types for handling JSON-related errors, including both EncodeError and DecodeError.
 
@@ -40,10 +40,10 @@ FileError = (
 )
 
 # TypeError is raised by json.dumps for invalid JSON types
-EncodeError = (TypeError,) + FileError
+EncodeError = (TypeError,)
 
 # JSONDecodeError is raised by json.loads for invalid JSON formatting
-DecodeError = (JSONDecodeError,) + FileError
+DecodeError = (JSONDecodeError,)
 
 # Custom Error Definitions for JSON Encoding and Decoding
 JSONError = EncodeError + DecodeError
