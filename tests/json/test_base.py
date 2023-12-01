@@ -7,6 +7,11 @@ from pathlib import Path
 
 import pytest
 
+from jsonpycraft.core.errors import (
+    JSONDecodeErrorHandler,
+    JSONEncodeErrorHandler,
+    JSONFileErrorHandler,
+)
 from jsonpycraft.json.base import JSONBaseTemplate
 
 
@@ -33,14 +38,14 @@ def test_json_file_path(json_base_template):
 
 def test_json_data(json_base_template):
     # Load the data to register it
-    assert json_base_template.load_json() is True
+    json_base_template.load_json()
     assert json_base_template.data is not None
     assert isinstance(json_base_template.data, dict)
     assert bool(json_base_template.data) is True
 
 
 def test_json_loading(json_base_template):
-    assert json_base_template.load_json() is True
+    json_base_template.load_json()
     assert json_base_template.data.get("test") == "data"
 
 
@@ -48,14 +53,14 @@ def test_json_saving(json_base_template):
     # Saving will only register data if we pass it to the method.
     # Otherwise it simply defaults to using its internal property.
     new_data = {"new": "data"}
-    assert json_base_template.save_json(new_data) is True
+    json_base_template.save_json(new_data)
     json_base_template.load_json()  # Ensure the data persisted
     assert json_base_template.data == new_data
 
 
 def test_json_backup(json_base_template, tmp_path):
     temp_json_backup_path = tmp_path / "test.backup.json"
-    assert json_base_template.backup_json() is True
+    json_base_template.backup_json()
     assert temp_json_backup_path.exists() is True
     with open(json_base_template.file_path, "r") as original, open(
         temp_json_backup_path, "r"
@@ -70,5 +75,5 @@ def test_json_directory_creation(json_base_template, tmp_path):
         # Remove the file first to ensure the directory is empty
         (dir_path / json_base_template.file_path.name).unlink()
         dir_path.rmdir()  # Ensure the directory doesn't exist before the test
-    assert json_base_template.make_directory() is True
+    json_base_template.make_directory()
     assert dir_path.exists() is True
