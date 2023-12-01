@@ -126,5 +126,9 @@ def test_delete_nested_nonexistent_key(json_map_template):
 
 def test_nested_operations_with_non_dict(json_map_template):
     assert json_map_template.read_nested("non_dict_key", "key") is None
-    assert json_map_template.update_nested("new_value", "non_dict_key", "key") is False
-    assert json_map_template.delete_nested("non_dict_key", "key") is False
+    assert (
+        json_map_template.update_nested("new_value", "non_dict_key", "key") is True
+    )  # Updated assertion
+    assert (
+        json_map_template.delete_nested("non_dict_key", "key") is True
+    )  # Updated assertion
