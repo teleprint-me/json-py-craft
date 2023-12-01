@@ -28,12 +28,10 @@ A tuple of file-related error types, which includes:
 ### `EncodeError`
 A tuple of error types for JSON encoding, including:
 - `TypeError`: Raised by `json.dump(s)` for encoding errors.
-- Includes all errors defined in `FileError`.
 
 ### `DecodeError`
 A tuple of error types for JSON decoding, including:
 - `json.JSONDecodeError`: Raised by `json.loads` for decoding errors.
-- Includes all errors defined in `FileError`.
 
 ### `JSONError`
 A unified set of error types for handling JSON-related errors. It includes both `EncodeError` and `DecodeError`.
