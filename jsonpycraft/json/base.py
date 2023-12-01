@@ -12,6 +12,11 @@ import json
 from pathlib import Path
 from typing import Optional, Protocol
 
+from jsonpycraft.core.errors import (
+    JSONDecodeErrorHandler,
+    JSONEncodeErrorHandler,
+    JSONFileErrorHandler,
+)
 from jsonpycraft.core.types import (
     DecodeError,
     EncodeError,
@@ -70,13 +75,15 @@ class JSONBaseTemplate(Protocol):
         Load JSON data from the file into the _data attribute.
 
         Raises:
-            DecodeError: If there is an error loading JSON data from the file.
+            JSONDecodeErrorHandler: If there is an error loading JSON data from the file.
         """
         try:
             with self._file_path.open("r") as file:
                 self._data = json.load(file)
         except DecodeError as e:
-            raise DecodeError(f"Error loading JSON from {self._file_path}: {e}")
+            raise JSONDecodeErrorHandler(
+                f"Error loading JSON from {self._file_path}: {e}"
+            )
 
     def save_json(self, data: Optional[JSONData] = None, indent: int = 2) -> None:
         """
@@ -89,7 +96,7 @@ class JSONBaseTemplate(Protocol):
             indent (int): The indentation level for the JSON output. Defaults to 2.
 
         Raises:
-            EncodeError: If there is an error saving JSON data to the file.
+            JSONEncodeErrorHandler: If there is an error saving JSON data to the file.
         """
         try:
             with self._file_path.open("w") as file:
@@ -99,7 +106,7 @@ class JSONBaseTemplate(Protocol):
                 else:
                     json.dump(self._data, file, indent=indent)
         except EncodeError as e:
-            raise EncodeError(f"Error saving JSON to {self._file_path}: {e}")
+            raise JSONEncodeErrorHandler(f"Error saving JSON to {self._file_path}: {e}")
 
     def backup_json(self, indent: int = 2) -> None:
         """
@@ -109,7 +116,7 @@ class JSONBaseTemplate(Protocol):
             indent (int): The indentation level for the JSON output. Defaults to 2.
 
         Raises:
-            JSONError: If there is an error creating a backup of the JSON file.
+            JSONFileErrorHandler: If there is an error creating a backup of the JSON file.
         """
         try:
             backup_path = self._file_path.with_suffix(".backup.json")
@@ -118,16 +125,18 @@ class JSONBaseTemplate(Protocol):
             ) as backup_file:
                 json.dump(json.load(original_file), backup_file, indent=indent)
         except JSONError as e:
-            raise JSONError(f"Error backing up JSON as {backup_path}: {e}")
+            raise JSONFileErrorHandler(f"Error backing up JSON as {backup_path}: {e}")
 
     def make_directory(self) -> None:
         """
         Create the directory for the JSON file.
 
         Raises:
-            FileError: If there is an error creating the directory for the JSON file.
+            JSONFileErrorHandler: If there is an error creating the directory for the JSON file.
         """
         try:
             self._file_path.parent.mkdir(parents=True, exist_ok=True)
         except FileError as e:
-            raise FileError(f"Error creating path for {self._file_path}: {e}")
+            raise JSONFileErrorHandler(
+                f"Error creating path for {self._file_path}: {e}"
+            )
