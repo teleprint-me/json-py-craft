@@ -85,6 +85,9 @@ class JSONMapTemplate(JSONBaseTemplate):
         Returns:
             bool: True if the nested key-value pair was created successfully, False if any key in the hierarchy is missing or if the final key already exists.
         """
+        if not keys:
+            raise ValueError("At least one key is required")
+
         data = self._data
         last_key = keys[-1]
         keys = keys[:-1]
@@ -123,6 +126,9 @@ class JSONMapTemplate(JSONBaseTemplate):
         Returns:
             Any: The value associated with the nested keys hierarchy, or None if any key in the hierarchy is missing.
         """
+        if not keys:
+            raise ValueError("At least one key is required")
+
         data = self._data
         for key in keys:
             if isinstance(data, dict) and key in data:
@@ -217,6 +223,9 @@ class JSONMapTemplate(JSONBaseTemplate):
         Returns:
             bool: True if the nested key-value pair was deleted successfully, False if any key in the hierarchy is missing.
         """
+        if not keys:
+            raise ValueError("At least one key is required")
+
         data = self._data
         last_key = keys[-1]
         keys = keys[:-1]
