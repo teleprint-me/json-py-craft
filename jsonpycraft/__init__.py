@@ -25,11 +25,16 @@ Project Details:
 - License: AGPL
 - Readme: README.md
 """
-from jsonpycraft.core.logger import get_default_logger
+from jsonpycraft.core.errors import (
+    JSONDecodeErrorHandler,
+    JSONEncodeErrorHandler,
+    JSONFileErrorHandler,
+)
 from jsonpycraft.core.singleton import Singleton
 from jsonpycraft.core.types import (  # JSONError == EncodeError + DecodeError
     DecodeError,
     EncodeError,
+    FileError,
     JSONData,
     JSONError,
     JSONList,
