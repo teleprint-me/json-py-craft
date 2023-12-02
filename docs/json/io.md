@@ -8,37 +8,43 @@ The `jsonpycraft/json/io.py` module is responsible for handling input and output
 
 Read JSON data from a file.
 
-- Parameters:
+- **Parameters:**
   - `filepath` (Union[str, Path]): The path to the JSON file.
 
-- Returns:
+- **Returns:**
   - `JSONData`: The deserialized JSON data.
 
-- Raises:
-  - `DecodeError`: If there is an error reading or decoding the JSON data.
+- **Raises:**
+  - `JSONFileErrorHandler`: If there is a file-related error.
+  - `JSONDecodeErrorHandler`: If there is a JSON decoding error.
 
 ### `dump_json(filepath: Union[str, Path], indent: int = 2) -> str`
 
 Serialize JSON data to a formatted string.
 
-- Parameters:
+- **Parameters:**
   - `filepath` (Union[str, Path]): The path to the JSON file.
   - `indent` (int, optional): The number of spaces to use for indentation in the formatted JSON string (default is 2).
 
-- Returns:
+- **Returns:**
   - `str`: The serialized JSON data in a formatted string.
 
-- Raises:
-  - `EncodeError`: If there is an error encoding the JSON data.
+- **Raises:**
+  - `JSONFileErrorHandler`: If there is a file-related error.
+  - `JSONEncodeErrorHandler`: If there is a JSON encoding error.
 
 ### `write_json(filepath: Union[str, Path], content: JSONData, indent: int = 2) -> None`
 
 Write JSON data to a file.
 
-- Parameters:
+- **Parameters:**
   - `filepath` (Union[str, Path]): The path to the JSON file.
   - `content` (JSONData): The data to be serialized and written as JSON.
   - `indent` (int, optional): The number of spaces to use for indentation in the JSON file (default is 2).
+
+- **Raises:**
+  - `JSONFileErrorHandler`: If there is a file-related error.
+  - `JSONEncodeErrorHandler`: If there is a JSON encoding error.
 
 ### `force_read_json(filepath: Union[str, Path], content: JSONData) -> JSONData`
 
@@ -46,15 +52,16 @@ Read JSON data from a file or create the file with default content if it doesn't
 
 If the specified file does not exist, it will be created with the provided content. This function is useful for ensuring that a file exists before reading from it.
 
-- Parameters:
+- **Parameters:**
   - `filepath` (Union[str, Path]): The path to the JSON file.
   - `content` (JSONData): The default content to be written as JSON if the file doesn't exist.
 
-- Returns:
+- **Returns:**
   - `JSONData`: The deserialized JSON data.
 
-- Raises:
-  - `DecodeError`: If there is an error reading or decoding the JSON data.
+- **Raises:**
+  - `JSONFileErrorHandler`: If there is a file-related error.
+  - `JSONDecodeErrorHandler`: If there is a JSON decoding error.
 
 ## Example Usage
 
