@@ -25,14 +25,14 @@ pip install https://github.com/teleprint-me/json-py-craft.git
 Here's a quick start guide to using JsonPyCraft:
 
 ```python
-from jsonpycraft import JSONMappingTemplate, JSONListTemplate
+from jsonpycraft import JSONMapTemplate, JSONListTemplate
 
 # Example of using JSONMapTemplate
-mapping = JSONMapTemplate('config.json')
-mapping.create('key', 'value')
+map_template = JSONMapTemplate('map_data.json')
+map_template.create('key', 'value')
 
 # Example of using JSONListTemplate
-list_template = JSONListTemplate('data.json')
+list_template = JSONListTemplate('list_data.json')
 list_template.append({'id': 1, 'name': 'JsonPyCraft'})
 ```
 
@@ -43,14 +43,10 @@ list_template.append({'id': 1, 'name': 'JsonPyCraft'})
 - Nested JSON data management.
 - Pythonic, easy-to-use interface with detailed documentation.
 
-## Contributing
-
-Contributions to JsonPyCraft are welcome! Please refer to our contributing guidelines for more information.
-
 ## License
 
 JsonPyCraft is released under the [GNU Affero General Public License](LICENSE).
 
-## Support and Contact
+## Contributing, Support, and Contact
 
 For support, feature requests, or contributions, feel free to open an issue or pull request.
