@@ -16,11 +16,3 @@ The JSONPyCraft library provides tools for working with JSON data in Python. Thi
 ## Usage
 
 Each documentation file provides detailed information on the respective module or class, including descriptions, constructors, properties, methods, and usage examples.
-
-## Contributing
-
-If you would like to contribute to the JSON-Py-Craft library or suggest improvements to the documentation, please refer to the [contributing guidelines](../CONTRIBUTING.md).
-
-## License
-
-This library is open-source and distributed under the [AGPL License](../LICENSE).
