@@ -86,26 +86,26 @@ The `JSONListTemplate` class is part of the JSON-Py-Craft library and serves as 
 from jsonpycraft.json.list import JSONListTemplate
 
 # Create a JSONListTemplate instance
-json_list_template = JSONListTemplate("data.json")
+list_template = JSONListTemplate("data.json")
 
 # Append a dictionary to the list
-json_list_template.append({"name": "Alice", "age": 30})
+list_template.append({"name": "Alice", "age": 30})
 
 # Insert a dictionary at a specific index
-json_list_template.insert(0, {"name": "Bob", "age": 25})
+list_template.insert(0, {"name": "Bob", "age": 25})
 
 # Retrieve a dictionary from the list
-item = json_list_template.get(1)
+item = list_template.get(1)
 
 # Update a dictionary in the list
-json_list_template.update(0, {"name": "Charlie", "age": 28})
+list_template.update(0, {"name": "Charlie", "age": 28})
 
 # Remove a dictionary from the list
-json_list_template.remove(1)
+list_template.remove(1)
 
 # Pop a dictionary from the list
-popped_item = json_list_template.pop(0)
+popped_item = list_template.pop(0)
 
 # Clear the list
-json_list_template.clear()
+list_template.clear()
 ```
