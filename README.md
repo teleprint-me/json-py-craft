@@ -43,6 +43,10 @@ list_template.append({'id': 1, 'name': 'JsonPyCraft'})
 - Nested JSON data management.
 - Pythonic, easy-to-use interface with detailed documentation.
 
+### OpenAI GPT Support
+
+Chat with [JSONPyCraft](https://chat.openai.com/g/g-ECxYHAufF-jsonpycraft) if you have a OpenAI Plus subscription.
+
 ## License
 
 JsonPyCraft is released under the [GNU Affero General Public License](LICENSE).
