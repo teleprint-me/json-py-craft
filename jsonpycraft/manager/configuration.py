@@ -37,30 +37,34 @@ class ConfigurationManager(Singleton):
         self._map_template = JSONMapTemplate(file_path, initial_data=initial_data)
         # NOTE: Removed automated loading to avoid a bug where `initial_data` was unintentionally overridden as a result.
 
-    def load(self) -> bool:
+    def load(self) -> None:
         """
         Load configuration data from the file.
 
-        Returns:
-            bool: True if the data was loaded successfully, False otherwise.
+        Raises:
+            JSONFileErrorHandler: If there is a file-related error accessing the JSON file.
+            JSONDecodeErrorHandler: If there is an error loading JSON data from the file.
         """
         return self._map_template.load_json()
 
-    def save(self) -> bool:
+    def save(self) -> None:
         """
         Save configuration data to the file.
 
-        Returns:
-            bool: True if the data was saved successfully, False otherwise.
+        Raises:
+            JSONFileErrorHandler: If there is a file-related error accessing the JSON file.
+            JSONEncodeErrorHandler: If there is an error saving JSON data to the file.
         """
         return self._map_template.save_json(self._map_template.data)
 
-    def backup(self) -> bool:
+    def backup(self) -> None:
         """
         Create a backup of the configuration file.
 
-        Returns:
-            bool: True if the backup was created successfully, False otherwise.
+        Raises:
+            JSONFileErrorHandler: If there is an error creating a backup of the JSON file.
+            JSONDecodeErrorHandler: If there is an error loading JSON data from the file.
+            JSONEncodeErrorHandler: If there is an error saving JSON data to the file.
         """
         return self._map_template.backup_json()
 
