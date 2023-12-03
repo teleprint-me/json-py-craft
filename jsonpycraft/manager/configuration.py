@@ -8,7 +8,6 @@ from typing import Any, Optional
 
 import dotenv
 
-from jsonpycraft.core.logger import LOGGER_FORMAT
 from jsonpycraft.core.singleton import Singleton
 from jsonpycraft.core.types import JSONMap
 from jsonpycraft.json.map import JSONMapTemplate
@@ -23,7 +22,6 @@ class ConfigurationManager(Singleton):
         self,
         file_path: str,
         initial_data: Optional[JSONMap] = None,
-        logger: Optional[Logger] = None,
     ):
         """
         Initialize the ConfigurationManager instance.
@@ -36,10 +34,8 @@ class ConfigurationManager(Singleton):
         super(ConfigurationManager, self).__init__()
 
         # Initialize the Configuration map
-        self._map_template = JSONMapTemplate(
-            file_path, initial_data=initial_data, logger=logger
-        )
-        self._map_template.load_json()
+        self._map_template = JSONMapTemplate(file_path, initial_data=initial_data)
+        # NOTE: Removed automated loading to avoid a bug where `initial_data` was unintentionally overridden as a result.
 
     def load(self) -> bool:
         """
@@ -159,7 +155,13 @@ class ConfigurationManager(Singleton):
 
         return value
 
-    def get_logger(self, key: str, logger_name: str, level: str = "DEBUG") -> Logger:
+    def get_logger(
+        self,
+        key: str,
+        logger_name: str,
+        level: str = "DEBUG",
+        logger_format: Optional[str] = None,
+    ) -> Logger:
         """
         Get a logger instance with specified configuration.
 
@@ -176,6 +178,11 @@ class ConfigurationManager(Singleton):
             - If the logger with the specified `logger_name` already exists, it returns the existing logger to ensure consistent logging across the application.
             - Log messages are written to a log file, and the log format includes timestamp, log level, and the log message itself.
         """
+        if logger_format is None:
+            logger_format = (
+                "%(asctime)s - %(filename)s:%(lineno)d - %(levelname)s - %(message)s"
+            )
+
         log_info = self.get_value(key, None)
 
         if log_info is None:
@@ -189,7 +196,7 @@ class ConfigurationManager(Singleton):
 
         if not logger.handlers:
             handler = logging.FileHandler(log_file_path, "a")
-            formatter = logging.Formatter(LOGGER_FORMAT)
+            formatter = logging.Formatter(logger_format)
             handler.setFormatter(formatter)
             logger.addHandler(handler)
             logger.setLevel(log_level)
