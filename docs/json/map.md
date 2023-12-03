@@ -9,13 +9,12 @@ The `JSONMapTemplate` class is part of the JSON-Py-Craft library and serves as a
 
 ## Constructor
 
-### `JSONMapTemplate(file_path: str, initial_data: Optional[JSONMap] = None, logger: Optional[Logger] = None)`
+### `JSONMapTemplate(file_path: str, initial_data: Optional[JSONMap] = None)`
 
 - Initializes a new `JSONMapTemplate` instance.
 - Parameters:
   - `file_path` (str): The path to the JSON file that stores the mapping.
   - `initial_data` (Optional[JSONMap]): Optional initial data to populate the mapping.
-  - `logger` (Optional[Logger]): Optional logger for error-handling.
 
 ## Properties
 
@@ -67,12 +66,14 @@ The `JSONMapTemplate` class is part of the JSON-Py-Craft library and serves as a
   - `value` (Any): The value to associate with the key.
 - Returns `True` if the value was updated, `False` if a new key-value pair was created.
 
-### `update_nested(value: Any, *keys: str) -> bool`
+### `update_nested(value: Any, *keys: str, overwrite: bool = True) -> bool`
 
 - Updates the value associated with a nested key hierarchy in the mapping. If the nested keys hierarchy is already present in the mapping, the value is updated. Otherwise, a new nested key-value pair is created.
 - Parameters:
   - `value` (Any): The value to associate with the nested keys hierarchy.
   - `keys` (str): The keys hierarchy for the nested value.
+  - `overwrite` (bool): Overwrite exiting non-empty dictionaries.
+
 - Returns `True` if the value was updated, `False` if a new nested key-value pair was created.
 
 ### `delete(key: str) -> bool`
@@ -93,20 +94,20 @@ The `JSONMapTemplate` class is part of the JSON-Py-Craft library and serves as a
 
 ```python
 # Creating an instance of JSONMapTemplate
-json_map = JSONMapTemplate("data.json")
+map_template = JSONMapTemplate("data.json")
 
 # Creating a new key-value pair
-json_map.create("name", "John Doe")
+map_template.create("name", "John Doe")
 
 # Reading the value associated with a key
-name = json_map.read("name")
+name = map_template.read("name")
 print(name)  # Output: "John Doe"
 
 # Updating a key-value pair
-json_map.update("name", "Jane Doe")
+map_template.update("name", "Jane Doe")
 
 # Deleting a key-value pair
-json_map.delete("name")
+map_template.delete("name")
 ```
 
 ## Notes
