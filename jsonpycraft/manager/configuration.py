@@ -163,6 +163,11 @@ class ConfigurationManager(Singleton):
         """
         Get the value of an environment variable.
 
+        This method retrieves the value of the specified environment variable. If the 'key' parameter
+        is provided, it first evaluates the path to a `.env` file based on the configuration and loads
+        the environment variables from that file. If 'key' is not provided, it assumes that a `.env` file
+        exists in the local path.
+
         Args:
             variable (str): The name of the environment variable.
             key (str, optional): The key in the configuration data where the environment variable is stored. Defaults to None.
@@ -170,8 +175,18 @@ class ConfigurationManager(Singleton):
         Returns:
             str: The value of the environment variable.
 
-        NOTE:
-            - The evaluated path assumes a `.env` is within the local path if key is `None`.
+        Raises:
+            ValueError: If the `.env` file cannot be loaded or if the specified environment variable is not found.
+
+        Example Usage:
+
+            config_manager = ConfigurationManager("path/to/config.json")
+            config_manager.set_value("env_config", {"type": "file", "path": "~/my_project/.env"})
+            value = config_manager.get_environment("SECRET_KEY", "env_config")
+
+        Note:
+            - When using the 'key' parameter, this method loads environment variables from the specified `.env` file.
+            - If 'key' is None, it assumes that a `.env` file exists in the local path.
         """
         env_path = self.evaluate_path(key, ".env")
 
