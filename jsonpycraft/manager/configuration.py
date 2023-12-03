@@ -30,7 +30,7 @@ class ConfigurationManager(Singleton):
         Args:
             file_path (str): The path to the configuration file.
             initial_data (Optional[JSONMap], optional): Initial configuration data. Defaults to None.
-            logger (Optional[Logger]): Optional logger for error-handling.
+            indent (int, optional): The JSON indentation level for formatting. Defaults to 2.
         """
         super(ConfigurationManager, self).__init__()
 
