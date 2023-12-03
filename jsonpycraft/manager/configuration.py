@@ -243,18 +243,31 @@ class ConfigurationManager(Singleton):
         """
         Get a logger instance with specified configuration.
 
+        This method retrieves a logger instance configured based on the provided 'key'. It allows you to
+        customize the logger's name, log level, and log format.
+
         Args:
             key (str): A unique key identifying the logger configuration.
             logger_name (str): The name of the logger.
             level (str, optional): The log level for the logger (default is "DEBUG").
+            logger_format (str, optional): The log format as a string (default is None).
 
         Returns:
-            Logger: A configured logger instance.
+            Logger: A configured logger instance for logging messages.
 
-        NOTE:
-            - The `key` parameter is used to determine the log file path and log level based on configuration settings.
-            - If the logger with the specified `logger_name` already exists, it returns the existing logger to ensure consistent
-                logging across the application.
+        Raises:
+            ValueError: If the logger configuration for the specified 'key' is not found.
+
+        Example Usage:
+
+            config_manager = ConfigurationManager("path/to/config.json")
+            logger = config_manager.get_logger("logger_config", "my_logger", "INFO")
+            logger.info("This is an info message.")
+
+        Note:
+            - The 'key' parameter is used to determine the log file path and log level based on configuration settings.
+            - If the logger with the specified 'logger_name' already exists, it returns the existing logger to ensure
+            consistent logging across the application.
             - Log messages are written to a log file, and the log format includes timestamp, log level, and the log message itself.
         """
         log_info = self.get_value(key, None)
