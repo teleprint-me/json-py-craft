@@ -93,7 +93,7 @@ class ConfigurationManager(Singleton):
         return self._map_template.update_nested(value, *keys)
 
     def evaluate_path(
-        self, key: str, default_value: Optional[str] = None, default_type: str = "dir"
+        self, key: str, default_path: Optional[str] = None, default_type: str = "dir"
     ) -> Optional[str]:
         """
         Evaluate a configuration path based on the provided key.
@@ -104,7 +104,7 @@ class ConfigurationManager(Singleton):
 
         Args:
             key (str): The key to retrieve the path for.
-            default_value (Optional[str], optional): The default path value to return if
+            default_path (Optional[str], optional): The default path value to return if
                 the key is not found in the configuration. Defaults to None.
             default_type (str, optional): The default type of the path, either "file" or "dir",
                 if not explicitly specified in the configuration. Defaults to "dir".
@@ -112,7 +112,7 @@ class ConfigurationManager(Singleton):
         Returns:
             Optional[str]: The evaluated path, or the default path value if not found in
             the configuration. If the path does not exist, it will be created based on the
-            specified path type ("file" or "dir").
+            specified path type.
 
         Raises:
             ValueError: If the path type specified in the configuration is invalid.
@@ -129,10 +129,10 @@ class ConfigurationManager(Singleton):
             variables in the path string before returning it. If the path does not exist, it
             will be created based on the specified path type.
         """
-        path_info = self.get_value(key, default_value)
+        path_info = self.get_value(key, default_path)
 
         if path_info is None:
-            return default_value  # Key does not exist, return default
+            return default_path  # Key does not exist, return default
 
         if isinstance(path_info, str):
             return path_info  # Directly return the string value
