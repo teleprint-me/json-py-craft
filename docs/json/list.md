@@ -9,13 +9,12 @@ The `JSONListTemplate` class is part of the JSON-Py-Craft library and serves as 
 
 ## Constructor
 
-### `JSONListTemplate(file_path: str, initial_data: Optional[JSONList] = None, logger: Optional[Logger] = None)`
+### `JSONListTemplate(file_path: str, initial_data: Optional[JSONList] = None)`
 
 - Initializes a new `JSONListTemplate` instance.
 - Parameters:
   - `file_path` (str): The path to the JSON file that stores the list.
   - `initial_data` (Optional[JSONList]): Optional initial data to populate the list.
-  - `logger` (Optional[Logger]): Optional logger for error-handling.
 
 ## Properties
 

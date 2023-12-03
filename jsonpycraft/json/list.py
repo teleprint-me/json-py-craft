@@ -2,7 +2,6 @@
 jsonpycraft/json/list.py
 """
 from copy import deepcopy
-from logging import Logger
 from typing import Optional
 
 from jsonpycraft.core.types import JSONList, JSONMap
@@ -16,14 +15,12 @@ class JSONListTemplate(JSONBaseTemplate):
     Attributes:
         _file_path (Path): A path-like object pointing to the JSON source file.
         _data (Optional[JSONData]): The internal JSON data structure. May be None if not loaded.
-        _logger (Optional[Logger]): Optional logger for error-handling.
     """
 
     def __init__(
         self,
         file_path: str,
         initial_data: Optional[JSONList] = None,
-        logger: Optional[Logger] = None,
     ):
         """
         Initializes the JSONListTemplate.
@@ -31,11 +28,8 @@ class JSONListTemplate(JSONBaseTemplate):
         Args:
             file_path (str): The path to the JSON file that stores the list.
             initial_data (Optional[JSONList]): Optional initial data to populate the list.
-            logger (Optional[Logger]): Optional logger for error-handling.
         """
-        super(JSONListTemplate, self).__init__(
-            file_path, deepcopy(initial_data), logger
-        )
+        super(JSONListTemplate, self).__init__(file_path, deepcopy(initial_data))
 
         if initial_data is None:
             self._data = []
