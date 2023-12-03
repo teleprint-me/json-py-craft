@@ -92,26 +92,53 @@ class ConfigurationManager(Singleton):
         keys = key.split(".")
         return self._map_template.update_nested(value, *keys)
 
-    def evaluate_path(self, key: str, default: Optional[Any] = None) -> Optional[str]:
+    def evaluate_path(
+        self, key: str, default_value: Optional[str] = None, default_type: str = "dir"
+    ) -> Optional[str]:
         """
         Evaluate a configuration path based on the provided key.
 
+        This method retrieves a configuration value associated with the provided key,
+        which is expected to represent a file or directory path. It evaluates the path
+        by expanding environment variables and user home directory '~' if present.
+
         Args:
             key (str): The key to retrieve the path for.
-            default (Optional[Any], optional): The default value to return if the path is not found. Defaults to None.
+            default_value (Optional[str], optional): The default path value to return if
+                the key is not found in the configuration. Defaults to None.
+            default_type (str, optional): The default type of the path, either "file" or "dir",
+                if not explicitly specified in the configuration. Defaults to "dir".
 
         Returns:
-            Optional[str]: The evaluated path, or the default value if not found.
+            Optional[str]: The evaluated path, or the default path value if not found in
+            the configuration. If the path does not exist, it will be created based on the
+            specified path type ("file" or "dir").
+
+        Raises:
+            ValueError: If the path type specified in the configuration is invalid.
+            TypeError: If the path retrieved from the configuration is not a string.
+
+        Example Usage:
+
+            config_manager = ConfigurationManager("path/to/config.json")
+            config_manager.set_value("my_path", {"type": "dir", "path": "~/my_directory"})
+            path = config_manager.evaluate_path("my_path")
+
+        Note:
+            The method will expand '~' to the user's home directory and evaluate environment
+            variables in the path string before returning it. If the path does not exist, it
+            will be created based on the specified path type.
         """
-        path_info = self.get_value(key, default)
+        path_info = self.get_value(key, default_value)
 
         if path_info is None:
-            return default  # Key does not exist, return default
+            return default_value  # Key does not exist, return default
 
         if isinstance(path_info, str):
             return path_info  # Directly return the string value
 
-        path_type = path_info.get("type", "dir")  # default to 'dir' if not specified
+        # Path type should default to 'dir' if not specified
+        path_type = path_info.get("type", default_type)
         path = path_info.get("path")
 
         if path_type not in ["file", "dir"]:
@@ -181,15 +208,15 @@ class ConfigurationManager(Singleton):
             - If the logger with the specified `logger_name` already exists, it returns the existing logger to ensure consistent logging across the application.
             - Log messages are written to a log file, and the log format includes timestamp, log level, and the log message itself.
         """
-        if logger_format is None:
-            logger_format = (
-                "%(asctime)s - %(filename)s:%(lineno)d - %(levelname)s - %(message)s"
-            )
-
         log_info = self.get_value(key, None)
 
         if log_info is None:
             raise ValueError(f"Logger configuration for {key} not found.")
+
+        if logger_format is None:  # Only do this step if ValueError is not raised
+            logger_format = (
+                "%(asctime)s - %(filename)s:%(lineno)d - %(levelname)s - %(message)s"
+            )
 
         default_log_dir = "/var/log/jsonpycraft/"  # Default log directory
         log_file_path = self.evaluate_path(key, default_log_dir)
