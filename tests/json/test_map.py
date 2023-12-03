@@ -7,12 +7,12 @@ from jsonpycraft.core.types import JSONMap
 from jsonpycraft.json.map import JSONMapTemplate
 
 
-@pytest.fixture(scope="module")
+@pytest.fixture(scope="function")
 def temp_map_data() -> JSONMap:
     return {"key1": "value1", "nested": {"key2": "value2"}}
 
 
-@pytest.fixture
+@pytest.fixture(scope="function")
 def json_map_template(tmp_path, temp_map_data) -> JSONMapTemplate:
     """
     Pytest fixture to create an instance of JSONMapTemplate for testing.
@@ -81,54 +81,58 @@ def test_delete_nested(json_map_template):
 
 
 def test_create_existing_key(json_map_template):
-    assert json_map_template.create("key1", "new_value") is True
-    assert (
-        json_map_template.data["key1"] == "new_value"
-    )  # ensure new old value no longer exists
+    # Ensure that 'create' does not overwrite an existing key
+    original_value = json_map_template.read("key1")
+    assert json_map_template.create("key1", "new_value") is False
+    assert json_map_template.read("key1") == original_value
 
 
 def test_read_nonexistent_key(json_map_template):
+    # Read should return None for a nonexistent key
     assert json_map_template.read("nonexistent_key") is None
 
 
 def test_read_nested_nonexistent_key(json_map_template):
+    # Read nested should return None for a nonexistent nested key
     assert json_map_template.read_nested("nested", "nonexistent_key") is None
 
 
 def test_update_and_create_behavior(json_map_template):
-    # Update an existing key's value (should return True since the key exists)
+    # Update existing key
     assert json_map_template.update("new_key", "updated_value") is True
-
-    # Read the value to ensure it was updated
     assert json_map_template.read("new_key") == "updated_value"
 
-    # Use update to create a new key-value pair (should return True since the key does not exist)
+    # Create new key
     assert json_map_template.update("nonexistent_key", "new_value") is True
-
-    # Read the newly created value to ensure it was created
     assert json_map_template.read("nonexistent_key") == "new_value"
 
 
 def test_update_nested_nonexistent_key(json_map_template):
     assert (
         json_map_template.update_nested("new_value", "nested", "nonexistent_key")
-        is False
+        is True
     )
 
 
 def test_delete_nonexistent_key(json_map_template):
-    assert json_map_template.delete("nonexistent_key") is True
+    # Delete should return False for a nonexistent key
+    assert json_map_template.delete("nonexistent_key") is False
 
 
 def test_delete_nested_nonexistent_key(json_map_template):
+    # Delete nested should return False for a nonexistent nested key
     assert json_map_template.delete_nested("nested", "nonexistent_key") is False
 
 
 def test_nested_operations_with_non_dict(json_map_template):
+    # Setup: Create a non-dict key
+    json_map_template.create("non_dict_key", "non_dict_value")
+
+    # Test nested read on non-dict key
     assert json_map_template.read_nested("non_dict_key", "key") is None
-    assert (
-        json_map_template.update_nested("new_value", "non_dict_key", "key") is True
-    )  # Updated assertion
-    assert (
-        json_map_template.delete_nested("non_dict_key", "key") is True
-    )  # Updated assertion
+
+    # Test nested update on non-dict key
+    assert json_map_template.update_nested("new_value", "non_dict_key", "key") is True
+
+    # Test nested delete on non-dict key
+    assert json_map_template.delete_nested("non_dict_key", "key") is True
