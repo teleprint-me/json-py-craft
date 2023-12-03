@@ -22,6 +22,7 @@ class ConfigurationManager(Singleton):
         self,
         file_path: str,
         initial_data: Optional[JSONMap] = None,
+        indent: int = 2,
     ):
         """
         Initialize the ConfigurationManager instance.
@@ -36,6 +37,8 @@ class ConfigurationManager(Singleton):
         # Initialize the Configuration map
         self._map_template = JSONMapTemplate(file_path, initial_data=initial_data)
         # NOTE: Removed automated loading to avoid a bug where `initial_data` was unintentionally overridden as a result.
+
+        self._indent = indent
 
     def load(self) -> None:
         """
@@ -55,7 +58,7 @@ class ConfigurationManager(Singleton):
             JSONFileErrorHandler: If there is a file-related error accessing the JSON file.
             JSONEncodeErrorHandler: If there is an error saving JSON data to the file.
         """
-        return self._map_template.save_json(self._map_template.data)
+        return self._map_template.save_json(self._map_template.data, self._indent)
 
     def backup(self) -> None:
         """
@@ -66,7 +69,7 @@ class ConfigurationManager(Singleton):
             JSONDecodeErrorHandler: If there is an error loading JSON data from the file.
             JSONEncodeErrorHandler: If there is an error saving JSON data to the file.
         """
-        return self._map_template.backup_json()
+        return self._map_template.backup_json(self._indent)
 
     def get_value(self, key: str, default: Optional[Any] = None) -> Any:
         """
