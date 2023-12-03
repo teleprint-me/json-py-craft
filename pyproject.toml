@@ -7,7 +7,8 @@ license = "AGPL"
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = ">=3.10"
+python = ">=3.11"
+python-dotenv = "^1.0.0"
 
 [tool.poetry.dev-dependencies]
 bpython = "^0.24"
@@ -18,7 +19,7 @@ pytest = "^7.4.3"
 build = "^1.0.3"
 mkdocs = "^1.5.3"
 mkdocstrings = {version = "^0.24.0", extras = ["python"]}
-mkdocs-material = "^9.4.9"
+mkdocs-material = "^9.4.11"
 
 [tool.build]
 packages = [
