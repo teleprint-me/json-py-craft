@@ -68,12 +68,29 @@ class ConfigurationManager(Singleton):
         """
         Get a configuration value based on the provided key.
 
+        This method allows you to retrieve configuration values, including nested values, by specifying
+        the 'key' parameter using dot notation. For example, if your configuration data has a nested
+        structure like {"parent": {"child": "value"}}, you can access the 'child' value using the key
+        "parent.child".
+
         Args:
-            key (str): The key to retrieve the value for.
-            default (Optional[Any], optional): The default value to return if the key is not found. Defaults to None.
+            key (str): The key to retrieve the value for. You can use dot notation to specify nested
+                keys for accessing deeply nested values.
+            default (Optional[Any], optional): The default value to return if the key is not found.
+                Defaults to None.
 
         Returns:
             Any: The configuration value corresponding to the key, or the default value if not found.
+
+        Example Usage:
+
+            config_manager = ConfigurationManager("path/to/config.json")
+            config_manager.set_value("parent.child", "value")
+            value = config_manager.get_value("parent.child")  # Returns "value"
+
+        Note:
+            - Dot notation is supported for specifying nested keys in the 'key' parameter.
+            - If a nested key is not found, the method will return 'None' unless a 'default' value is provided.
         """
         keys = key.split(".")
         return self._map_template.read_nested(*keys) or default
@@ -82,12 +99,27 @@ class ConfigurationManager(Singleton):
         """
         Set a configuration value for the provided key.
 
+        This method allows you to set configuration values, including nested values, by specifying the
+        'key' parameter using dot notation. For example, if you want to set a nested value like
+        {"parent": {"child": "value"}}, you can set the 'child' value using the key "parent.child".
+
         Args:
-            key (str): The key to set the value for.
+            key (str): The key to set the value for. You can use dot notation to specify nested keys for
+                setting deeply nested values.
             value (Any): The value to set.
 
         Returns:
             bool: True if the value was set successfully, False otherwise.
+
+        Example Usage:
+
+            config_manager = ConfigurationManager("path/to/config.json")
+            success = config_manager.set_value("parent.child", "value")
+
+        Note:
+            - Dot notation is supported for specifying nested keys in the 'key' parameter.
+            - If the specified key does not exist in the configuration, the method will create the
+            necessary nested structure to set the value.
         """
         keys = key.split(".")
         return self._map_template.update_nested(value, *keys)
@@ -170,7 +202,8 @@ class ConfigurationManager(Singleton):
 
         Args:
             variable (str): The name of the environment variable.
-            key (str, optional): The key in the configuration data where the environment variable is stored. Defaults to None.
+            key (str, optional): The key in the configuration data where the environment variable is stored.
+                Defaults to None.
 
         Returns:
             str: The value of the environment variable.
@@ -220,7 +253,8 @@ class ConfigurationManager(Singleton):
 
         NOTE:
             - The `key` parameter is used to determine the log file path and log level based on configuration settings.
-            - If the logger with the specified `logger_name` already exists, it returns the existing logger to ensure consistent logging across the application.
+            - If the logger with the specified `logger_name` already exists, it returns the existing logger to ensure consistent
+                logging across the application.
             - Log messages are written to a log file, and the log format includes timestamp, log level, and the log message itself.
         """
         log_info = self.get_value(key, None)
