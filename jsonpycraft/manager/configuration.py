@@ -106,7 +106,10 @@ class ConfigurationManager(Singleton):
         path_info = self.get_value(key, default)
 
         if path_info is None:
-            return None
+            return default  # Key does not exist, return default
+
+        if isinstance(path_info, str):
+            return path_info  # Directly return the string value
 
         path_type = path_info.get("type", "dir")  # default to 'dir' if not specified
         path = path_info.get("path")
