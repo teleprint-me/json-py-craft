@@ -15,14 +15,12 @@ class JSONMapTemplate(JSONBaseTemplate):
     Attributes:
         _file_path (Path): A path-like object pointing to the JSON source file.
         _data (Optional[JSONData]): The internal JSON data structure. May be None if not loaded.
-        _logger (Optional[Logger]): Optional logger for error-handling.
     """
 
     def __init__(
         self,
         file_path: str,
         initial_data: Optional[JSONMap] = None,
-        logger: Optional[Logger] = None,
     ):
         """
         Initializes the JSONMapTemplate.
@@ -30,9 +28,8 @@ class JSONMapTemplate(JSONBaseTemplate):
         Args:
             file_path (str): The path to the JSON file.
             initial_data (Optional[JSONMap]): Optional initial data to populate the mapping.
-            logger (Optional[Logger]): Optional logger for error-handling.
         """
-        super(JSONMapTemplate, self).__init__(file_path, initial_data, logger)
+        super(JSONMapTemplate, self).__init__(file_path, initial_data)
 
         if initial_data is None:
             self._data = {}
