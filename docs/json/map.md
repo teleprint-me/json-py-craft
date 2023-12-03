@@ -72,9 +72,9 @@ The `JSONMapTemplate` class is part of the JSON-Py-Craft library and serves as a
 - Parameters:
   - `value` (Any): The value to associate with the nested keys hierarchy.
   - `keys` (str): The keys hierarchy for the nested value.
-  - `overwrite` (bool): Overwrite exiting non-empty dictionaries.
-
-- Returns `True` if the value was updated, `False` if a new nested key-value pair was created.
+  - `overwrite` (bool): Determines whether to overwrite existing non-empty dictionaries at any level of the specified key hierarchy. When `True`, existing dictionaries are overwritten; when `False`, they are preserved.
+- Returns:
+  - `bool`: Always returns `True` upon successful update or creation.
 
 ### `delete(key: str) -> bool`
 
