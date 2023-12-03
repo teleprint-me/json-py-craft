@@ -12,14 +12,6 @@
 ## Description
 JsonPyCraft is a specialized Python toolkit designed for efficient and structured JSON management. This toolkit offers a range of functionalities from basic JSON file handling to advanced operations, making it ideal for developers looking to manage JSON data in Python applications with precision and ease.
 
-## Installation
-
-To install JsonPyCraft, run the following command in your terminal:
-
-```bash
-pip install https://github.com/teleprint-me/json-py-craft.git
-```
-
 ## Usage
 
 Here's a quick start guide to using JsonPyCraft:
@@ -45,12 +37,64 @@ list_template.append({'id': 1, 'name': 'JsonPyCraft'})
 
 ### OpenAI GPT Support
 
-Chat with [JSONPyCraft](https://chat.openai.com/g/g-ECxYHAufF-jsonpycraft) if you have a OpenAI Plus subscription.
+JsonPyCraft supports integration with OpenAI GPT if you have an OpenAI Plus subscription. You can chat with [JSONPyCraft](https://chat.openai.com/g/g-ECxYHAufF-jsonpycraft) for more information.
 
-## License
+## Installation
 
-JsonPyCraft is released under the [GNU Affero General Public License](LICENSE).
+You can install JsonPyCraft using either `pip` or `poetry`. Follow the instructions below based on your preferred method.
+
+### Using pip:
+
+1. Create a virtual environment (optional but recommended for isolation):
+
+```bash
+virtualenv .venv
+```
+
+2. Activate the virtual environment:
+
+```bash
+source .venv/bin/activate
+```
+
+3. Install JsonPyCraft using `pip`:
+
+```bash
+pip install https://github.com/teleprint-me/json-py-craft.git
+```
+
+### Using poetry:
+
+1. Initialize a new Poetry project. If you haven't already installed Poetry, you can do so with `pip`:
+
+```bash
+pip install poetry
+```
+
+2. Navigate to your project directory and run:
+
+```bash
+poetry init
+```
+
+Follow the prompts and add any necessary packages to your project.
+
+3. Activate the Poetry shell:
+
+```bash
+poetry shell
+```
+
+4. Add JsonPyCraft to your project using the following command, specifying the URL to the wheel file:
+
+```bash
+poetry add https://github.com/teleprint-me/json-py-craft/releases/download/v0.1.0/jsonpycraft-0.1.0-py3-none-any.whl
+```
 
 ## Contributing, Support, and Contact
 
 For support, feature requests, or contributions, feel free to open an issue or pull request.
+
+## License
+
+JsonPyCraft is released under the GNU Affero General Public License ([LICENSE](LICENSE)).
