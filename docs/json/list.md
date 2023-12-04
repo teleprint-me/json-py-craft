@@ -9,7 +9,7 @@ The `JSONListTemplate` class is part of the JSON-Py-Craft library and serves as 
 
 ## Constructor
 
-### `JSONListTemplate(file_path: str, initial_data: Optional[JSONList] = None)`
+### JSONListTemplate(file_path: str, initial_data: Optional[JSONList] = None)
 
 - Initializes a new `JSONListTemplate` instance.
 - Parameters:
@@ -18,23 +18,23 @@ The `JSONListTemplate` class is part of the JSON-Py-Craft library and serves as 
 
 ## Properties
 
-### `length`
+### length
 
 - Returns the length of the internal data list.
 
-### `data`
+### data
 
 - Returns a copy of the internal data list or None if the list is empty.
 
 ## Methods
 
-### `append(item: JSONMap) -> None`
+### append(item: JSONMap) -> None
 
 - Appends a dictionary to the internal data list.
 - Parameters:
   - `item` (JSONMap): The dictionary to append to the internal list.
 
-### `insert(index: int, item: JSONMap) -> bool`
+### insert(index: int, item: JSONMap) -> bool
 
 - Inserts a dictionary at a specific index in the list.
 - Parameters:
@@ -43,7 +43,7 @@ The `JSONListTemplate` class is part of the JSON-Py-Craft library and serves as 
 - Returns:
   - `bool`: True if the insertion is successful, False otherwise.
 
-### `get(index: int) -> Optional[JSONMap]`
+### get(index: int) -> Optional[JSONMap]
 
 - Retrieves a dictionary from a specific index in the list.
 - Parameters:
@@ -51,7 +51,7 @@ The `JSONListTemplate` class is part of the JSON-Py-Craft library and serves as 
 - Returns:
   - `Optional[JSONMap]`: The dictionary at the specified index or None if the index is out of range.
 
-### `update(index: int, item: JSONMap) -> bool`
+### update(index: int, item: JSONMap) -> bool
 
 - Updates a dictionary at a specific index in the list.
 - Parameters:
@@ -60,7 +60,7 @@ The `JSONListTemplate` class is part of the JSON-Py-Craft library and serves as 
 - Returns:
   - `bool`: True if the update is successful, False otherwise.
 
-### `remove(index: int) -> bool`
+### remove(index: int) -> bool
 
 - Removes a dictionary from a specific index in the list.
 - Parameters:
@@ -68,7 +68,7 @@ The `JSONListTemplate` class is part of the JSON-Py-Craft library and serves as 
 - Returns:
   - `bool`: True if the removal is successful, False otherwise.
 
-### `pop(index: int) -> Optional[JSONMap]`
+### pop(index: int) -> Optional[JSONMap]
 
 - Removes and returns a dictionary from a specific index in the list.
 - Parameters:
@@ -76,7 +76,7 @@ The `JSONListTemplate` class is part of the JSON-Py-Craft library and serves as 
 - Returns:
   - `Optional[JSONMap]`: The removed dictionary if successful, None otherwise.
 
-### `clear() -> None`
+### clear() -> None
 
 - Clears the internal data list, making it empty.
 
