@@ -9,7 +9,7 @@ The `JSONBaseTemplate` class is a fundamental component of the JSONPyCraft proje
 
 ## Constructor
 
-### `JSONBaseTemplate(self, file_path: str, initial_data: Optional[JSONData] = None)`
+### JSONBaseTemplate(self, file_path: str, initial_data: Optional[JSONData] = None)
 
 Initialize a new `JSONBaseTemplate` instance.
 
@@ -18,11 +18,11 @@ Initialize a new `JSONBaseTemplate` instance.
 
 ## Properties
 
-### `file_path`
+### file_path
 
 - Get the path to the JSON file (read-only).
 
-### `data`
+### data
 
 - Get the underlying JSON data structure (read-only).
 
