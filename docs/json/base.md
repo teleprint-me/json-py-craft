@@ -1,4 +1,4 @@
-# JSONPyCraft JSONBaseTemplate Usage Guide
+# JSONBaseTemplate class
 
 ## Introduction
 
