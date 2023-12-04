@@ -1,8 +1,8 @@
-# JSONPyCraft Core Module: `jsonpycraft/core/errors.py`
+# JSONPyCraft Error Handling
 
 ## Introduction
 
-The `errors.py` module in the JSONPyCraft core package contains custom exception classes designed for specific error handling related to JSON operations. These custom exceptions enhance the clarity and specificity of error management within the JSONPyCraft project.
+The `jsonpycraft/core/errors.py` module in the JSONPyCraft core package contains custom exception classes designed for specific error handling related to JSON operations. These custom exceptions enhance the clarity and specificity of error management within the JSONPyCraft project.
 
 ## Custom Exceptions
 
