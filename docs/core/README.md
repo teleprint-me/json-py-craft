@@ -12,17 +12,14 @@ The `jsonpycraft.core` package provides key components and utilities, designed t
 
 ## Modules
 
-### Singleton (`jsonpycraft.core.singleton`)
+### Errors
+- [Errors Documentation](errors.md): The Errors module contains custom exception classes specifically designed for JSON operations within the JSONPyCraft project. These include `JSONFileErrorHandler`, `JSONEncodeErrorHandler`, and `JSONDecodeErrorHandler`, each tailored for handling distinct types of JSON-related errors.
 
-The Singleton module provides the necessary base class and metaclass for implementing the Singleton design pattern, ensuring only one instance of a class exists during the application's lifecycle.
+### Core Types
+- [Types Documentation](types.md): The Types module defines custom types and error handling related to JSON data. It includes flexible data representation types such as `JSONMap` and `JSONList`, along with error classes like `EncodeError`, `DecodeError`, and `FileError`.
 
-### Types (`jsonpycraft.core.types`)
-
-The Types module defines custom types and error handling related to JSON data. It includes flexible data representation types such as `JSONMap` and `JSONList`, along with error classes like `EncodeError`, `DecodeError`, and `FileError`.
-
-### Errors (`jsonpycraft.core.errors`)
-
-The Errors module contains custom exception classes specifically designed for JSON operations within the JSONPyCraft project. These include `JSONFileErrorHandler`, `JSONEncodeErrorHandler`, and `JSONDecodeErrorHandler`, each tailored for handling distinct types of JSON-related errors.
+### Singleton Pattern
+- [Singleton Documentation](singleton.md): The Singleton module provides the necessary base class and metaclass for implementing the Singleton design pattern, ensuring only one instance of a class exists during the application's lifecycle.
 
 ## Usage
 
