@@ -92,25 +92,92 @@ The `JSONMapTemplate` class is part of the JSON-Py-Craft library and serves as a
 
 ## Example Usage
 
+### Scenario
+
+Developing an application requiring management of user profiles with various preferences, including notification settings, stored in a JSON file.
+
+### 1. Initialize `JSONMapTemplate` and Load Data:
+
 ```python
-# Creating an instance of JSONMapTemplate
-map_template = JSONMapTemplate("data.json")
+from jsonpycraft.json.map import JSONMapTemplate
+from jsonpycraft.core.errors import JSONFileErrorHandler, JSONDecodeErrorHandler
 
-# Creating a new key-value pair
-map_template.create("name", "John Doe")
+user_profiles = JSONMapTemplate("user_profiles.json")
 
-# Reading the value associated with a key
-name = map_template.read("name")
-print(name)  # Output: "John Doe"
-
-# Updating a key-value pair
-map_template.update("name", "Jane Doe")
-
-# Deleting a key-value pair
-map_template.delete("name")
+try:
+    user_profiles.load_json()
+    print("Existing data loaded:", user_profiles.data)
+except JSONFileErrorHandler as e:
+    print(f"File access error for {user_profiles.file_path}: {e}")
+except JSONDecodeErrorHandler as e:
+    print(f"JSON decoding error: {e}")
 ```
 
-## Notes
+### 2. Create Nested Structure for User Preferences:
 
-- The `JSONMapTemplate` class simplifies working with structured JSON data by providing convenient methods for managing key-value pairs within the mapping.
-- It can be particularly useful for applications that require structured data storage and retrieval from JSON files.
+```python
+user_profiles.create_nested({"notifications": False}, "Alice", "preferences")
+```
+
+### 3. Add Root-Level User Profile:
+
+```python
+if not user_profiles.create("Alice", {"email": "alice@example.com", "age": 30}):
+    print("Alice already exists. Profile not overwritten.")
+```
+
+### 4. Overwrite Protection:
+
+```python
+if not user_profiles.create("Alice", {"email": "alice2@example.com"}):
+    print("Attempted overwrite blocked.")
+```
+
+### 5. Read Data Safely:
+
+```python
+preferences = user_profiles.read_nested("Alice", "preferences")
+if preferences is not None:
+    print("Alice's preferences:", preferences)
+
+alice_profile = user_profiles.read("Alice")
+email = alice_profile.get("email") if alice_profile else None
+print("Alice's email:", email if email else "Not available")
+```
+
+### 6. Update Nested Key-Value Pair:
+
+```python
+user_profiles.update_nested(True, "Alice", "preferences", "notifications")
+```
+
+### 7. Delete Key-Value Pair:
+
+```python
+if user_profiles.delete("Alice"):
+    print("Alice's profile deleted.")
+else:
+    print("Alice's profile not found.")
+
+print("Current data:", user_profiles.data)
+```
+
+### 8. Save Modified Data:
+
+```python
+from jsonpycraft.core.errors import JSONEncodeErrorHandler
+
+try:
+    user_profiles.save_json()
+    print("Data saved successfully.")
+except JSONFileErrorHandler as e:
+    print(f"Error saving to {user_profiles.file_path}: {e}")
+except JSONEncodeErrorHandler as e:
+    print(f"JSON encoding error: {e}")
+```
+
+## Conclusion
+
+The `JSONMapTemplate` class in JSONPyCraft provides a structured and versatile approach for managing JSON data, useful for applications like user profile management. It offers robust error handling, ensuring data integrity and smooth operation under various conditions.
+
+It simplifies working with structured JSON data by providing convenient methods for managing key-value pairs within the mapping. This makes it particularly useful for applications that require structured data storage and retrieval from JSON files.
