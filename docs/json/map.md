@@ -9,7 +9,7 @@ The `JSONMapTemplate` class is part of the JSON-Py-Craft library and serves as a
 
 ## Constructor
 
-### `JSONMapTemplate(file_path: str, initial_data: Optional[JSONMap] = None)`
+### JSONMapTemplate(file_path: str, initial_data: Optional[JSONMap] = None)
 
 - Initializes a new `JSONMapTemplate` instance.
 - Parameters:
@@ -18,17 +18,17 @@ The `JSONMapTemplate` class is part of the JSON-Py-Craft library and serves as a
 
 ## Properties
 
-### `keys`
+### keys
 
 - Returns a list of all keys in the mapping.
 
-### `data`
+### data
 
 - Returns a copy of the internal data structure representing the mapping or None if it's empty.
 
 ## Methods
 
-### `create(key: str, value: Any) -> bool`
+### create(key: str, value: Any) -> bool
 
 - Creates a new key-value pair in the mapping.
 - Parameters:
@@ -36,7 +36,7 @@ The `JSONMapTemplate` class is part of the JSON-Py-Craft library and serves as a
   - `value` (Any): The value of the pair.
 - Returns `True` if the key-value pair was created successfully, `False` if the key already exists.
 
-### `create_nested(value: Any, *keys: str) -> bool`
+### create_nested(value: Any, *keys: str) -> bool
 
 - Creates a nested key-value pair in the mapping.
 - Parameters:
@@ -44,21 +44,21 @@ The `JSONMapTemplate` class is part of the JSON-Py-Craft library and serves as a
   - `keys` (str): The keys hierarchy for the nested pair.
 - Returns `True` if the nested key-value pair was created successfully, `False` if any key in the hierarchy is missing or if the final key already exists.
 
-### `read(key: str) -> Any`
+### read(key: str) -> Any
 
 - Reads the value associated with a key in the mapping.
 - Parameters:
   - `key` (str): The key to read the value from.
 - Returns the value associated with the key, or None if the key is not present in the mapping.
 
-### `read_nested(*keys: str) -> Any`
+### read_nested(*keys: str) -> Any
 
 - Reads the value associated with a nested key hierarchy in the mapping.
 - Parameters:
   - `keys` (str): The keys hierarchy for the nested value.
 - Returns the value associated with the nested keys hierarchy, or None if any key in the hierarchy is missing.
 
-### `update(key: str, value: Any) -> bool`
+### update(key: str, value: Any) -> bool
 
 - Updates the value associated with a key in the mapping. If the key is already present in the mapping, the value is updated. Otherwise, a new key-value pair is created.
 - Parameters:
@@ -66,7 +66,7 @@ The `JSONMapTemplate` class is part of the JSON-Py-Craft library and serves as a
   - `value` (Any): The value to associate with the key.
 - Returns `True` if the value was updated, `False` if a new key-value pair was created.
 
-### `update_nested(value: Any, *keys: str, overwrite: bool = True) -> bool`
+### update_nested(value: Any, *keys: str, overwrite: bool = True) -> bool
 
 - Updates the value associated with a nested key hierarchy in the mapping. If the nested keys hierarchy is already present in the mapping, the value is updated. Otherwise, a new nested key-value pair is created.
 - Parameters:
@@ -76,14 +76,14 @@ The `JSONMapTemplate` class is part of the JSON-Py-Craft library and serves as a
 - Returns:
   - `bool`: Always returns `True` upon successful update or creation.
 
-### `delete(key: str) -> bool`
+### delete(key: str) -> bool
 
 - Deletes a key-value pair from the mapping.
 - Parameters:
   - `key` (str): The key to delete.
 - Returns `True` if the key-value pair was deleted successfully, `False` if the key is not present in the mapping.
 
-### `delete_nested(*keys: str) -> bool`
+### delete_nested(*keys: str) -> bool
 
 - Deletes a nested key-value pair from the mapping.
 - Parameters:
