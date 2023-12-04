@@ -4,7 +4,7 @@ The `jsonpycraft/json/io.py` module is responsible for handling input and output
 
 ## Functions
 
-### `read_json(filepath: Union[str, Path]) -> JSONData`
+### read_json(filepath: Union[str, Path]) -> JSONData
 
 Read JSON data from a file.
 
@@ -18,7 +18,7 @@ Read JSON data from a file.
   - `JSONFileErrorHandler`: If there is a file-related error.
   - `JSONDecodeErrorHandler`: If there is a JSON decoding error.
 
-### `dump_json(filepath: Union[str, Path], indent: int = 2) -> str`
+### dump_json(filepath: Union[str, Path], indent: int = 2) -> str
 
 Serialize JSON data to a formatted string.
 
@@ -33,7 +33,7 @@ Serialize JSON data to a formatted string.
   - `JSONFileErrorHandler`: If there is a file-related error.
   - `JSONEncodeErrorHandler`: If there is a JSON encoding error.
 
-### `write_json(filepath: Union[str, Path], content: JSONData, indent: int = 2) -> None`
+### write_json(filepath: Union[str, Path], content: JSONData, indent: int = 2) -> None
 
 Write JSON data to a file.
 
@@ -46,7 +46,7 @@ Write JSON data to a file.
   - `JSONFileErrorHandler`: If there is a file-related error.
   - `JSONEncodeErrorHandler`: If there is a JSON encoding error.
 
-### `force_read_json(filepath: Union[str, Path], content: JSONData) -> JSONData`
+### force_read_json(filepath: Union[str, Path], content: JSONData) -> JSONData
 
 Read JSON data from a file or create the file with default content if it doesn't exist.
 
