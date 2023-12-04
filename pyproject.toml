@@ -1,11 +1,10 @@
 [tool.poetry]
 name = "jsonpycraft"
-version = "0.1.1"
+version = "0.1.2"
 description = "JsonPyCraft is a specialized Python toolkit designed for efficient and structured JSON management."
 authors = ["Austin Berrio <aberrio@teleprint.me>"]
 license = "AGPL-3.0-or-later"
 readme = "README.md"
-repository = "https://github.com/teleprint-me/jsonpycraft"
 
 [tool.poetry.dependencies]
 python = ">=3.11"
@@ -23,7 +22,7 @@ mkdocstrings = {version = "^0.24.0", extras = ["python"]}
 mkdocs-material = "^9.4.14"
 
 [tool.poetry.urls]
-"Documentation" = "https://github.com/teleprint-me/jsonpycraft/docs"
+"Documentation" = "https://github.com/teleprint-me/json-py-craft/tree/main/docs"
 "Source" = "https://github.com/teleprint-me/jsonpycraft"
 
 [tool.build]

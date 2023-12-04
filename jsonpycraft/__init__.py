@@ -39,7 +39,7 @@ from jsonpycraft.json.map import JSONMapTemplate
 from jsonpycraft.manager.configuration import ConfigurationManager
 
 # Additional project details extracted from pyproject.toml
-__version__ = "0.1.1"
+__version__ = "0.1.2"
 __author__ = "Austin Berrio <aberrio@teleprint.me>"
 __description__ = "JsonPyCraft is a specialized Python toolkit designed for efficient and structured JSON management."
-__license__ = "AGPL"
+__license__ = "AGPL-3.0-or-later"
