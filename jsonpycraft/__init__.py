@@ -16,14 +16,6 @@ GNU Affero General Public License for more details.
 
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
-Project Details:
-- Name: jsonpycraft
-- Version: 0.1.0
-- Description: JsonPyCraft is a specialized Python toolkit designed for efficient and structured JSON management.
-- Author: Austin Berrio <aberrio@teleprint.me>
-- License: AGPL
-- Readme: README.md
 """
 from jsonpycraft.core.errors import (
     JSONDecodeErrorHandler,
@@ -47,7 +39,7 @@ from jsonpycraft.json.map import JSONMapTemplate
 from jsonpycraft.manager.configuration import ConfigurationManager
 
 # Additional project details extracted from pyproject.toml
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 __author__ = "Austin Berrio <aberrio@teleprint.me>"
 __description__ = "JsonPyCraft is a specialized Python toolkit designed for efficient and structured JSON management."
 __license__ = "AGPL"

@@ -2,7 +2,7 @@
 
 <figure>
     <p align="center">
-        <img src="assets/logo.png"
+        <img src="https://raw.githubusercontent.com/teleprint-me/json-py-craft/main/assets/logo.png"
             alt="JsonPyCraft Artwork Image"
             width="256" height="256">
         <figcaption>JsonPyCraft - A Fusion of Python and JSON, symbolizing the toolkit's capability to manage intricate JSON data structures.</figcaption>
@@ -23,15 +23,15 @@ JsonPyCraft is a specialized Python toolkit designed for efficient and structure
 
 Welcome to the JSONPyCraft documentation! Explore detailed documentation on key aspects of JSONPyCraft:
 
-- **[Core Components](docs/core/README.md):** Learn about custom error handling, the Singleton pattern, core types, and more.
+- **[Core Components](https://github.com/teleprint-me/json-py-craft/tree/main/docs/core):** Learn about custom error handling, the Singleton pattern, core types, and more.
 
-- **[JSON Templates](docs/json/README.md):** Understand JSON templates, I/O operations, list templates, and map templates.
+- **[JSON Templates](https://github.com/teleprint-me/json-py-craft/tree/main/docs/json):** Understand JSON templates, I/O operations, list templates, and map templates.
 
-- **[Managers](docs/manager/README.md):** Discover the `ConfigurationManager` class for managing configuration data.
+- **[Managers](https://github.com/teleprint-me/json-py-craft/tree/main/docs/manager):** Discover the `ConfigurationManager` class for managing configuration data.
 
-- **[PlantUML Diagrams](docs/puml/README.md):** Visual representations of key components.
+- **[PlantUML Diagrams](https://github.com/teleprint-me/json-py-craft/tree/main/docs/puml):** Visual representations of key components.
 
-For more detailed information, check out the [full documentation index](docs/README.md).
+For more detailed information, check out the [full documentation index](https://github.com/teleprint-me/json-py-craft/tree/main/docs).
 
 ### OpenAI GPT Support
 
@@ -55,10 +55,10 @@ virtualenv .venv
 source .venv/bin/activate
 ```
 
-3. Install JsonPyCraft using `pip`:
+3. Install JSONPyCraft using PyPI:
 
 ```bash
-pip install https://github.com/teleprint-me/json-py-craft.git
+pip install jsonpycraft
 ```
 
 ### Using poetry:
@@ -86,7 +86,7 @@ poetry shell
 4. Add JsonPyCraft to your project using the following command, specifying the URL to the wheel file:
 
 ```bash
-poetry add https://github.com/teleprint-me/json-py-craft/releases/download/v0.1.0/jsonpycraft-0.1.0-py3-none-any.whl
+poetry add jsonpycraft
 ```
 
 ## Usage
@@ -111,4 +111,4 @@ For support, feature requests, or contributions, feel free to open an issue or p
 
 ## License
 
-- [LICENSE](LICENSE): JsonPyCraft is released under the GNU Affero General Public License.
+- [LICENSE](https://github.com/teleprint-me/json-py-craft/blob/main/LICENSE): JsonPyCraft is released under the GNU Affero General Public License.
