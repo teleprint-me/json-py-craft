@@ -1,4 +1,4 @@
-# JSONPyCraft Core Module: `jsonpycraft/pattern/singleton.py`
+# JSONPyCraft Singletons
 
 The `jsonpycraft/pattern/singleton.py` module provides a base class and metaclass for implementing the Singleton pattern in the JSONPyCraft project.
 
