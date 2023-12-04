@@ -23,7 +23,7 @@ mkdocs-material = "^9.4.14"
 
 [tool.poetry.urls]
 "Documentation" = "https://github.com/teleprint-me/json-py-craft/tree/main/docs"
-"Source" = "https://github.com/teleprint-me/jsonpycraft"
+"Source" = "https://github.com/teleprint-me/json-py-craft"
 
 [tool.build]
 packages = [
