@@ -1,82 +1,116 @@
 # JSONBaseTemplate class
 
-## Introduction
+The `JSONBaseTemplate` class is a fundamental component of the JSONPyCraft project, designed for managing JSON files efficiently. This documentation provides insights into effectively utilizing the `JSONBaseTemplate` class in Python projects.
 
-The JSONPyCraft project includes the `JSONBaseTemplate` class, serving as a fundamental component for managing JSON files. This guide outlines the effective use of the `JSONBaseTemplate` class for JSON file management in Python projects.
+## Class Hierarchy
 
-## Prerequisites
+- Protocol (Inherits from)
+  - JSONBaseTemplate
 
-Before using `JSONBaseTemplate`, ensure you have:
+## Constructor
 
-- Python installed on your system.
-- Basic familiarity with Python programming.
+### `JSONBaseTemplate(self, file_path: str, initial_data: Optional[JSONData] = None)`
 
-## Initialization
+Initialize a new `JSONBaseTemplate` instance.
 
-Initialize an instance of `JSONBaseTemplate` as follows:
+- `file_path` (str): The path to the JSON file.
+- `initial_data` (Optional[JSONData]): The initial data. Defaults to None.
+
+## Properties
+
+### `file_path`
+
+- Get the path to the JSON file (read-only).
+
+### `data`
+
+- Get the underlying JSON data structure (read-only).
+
+## Methods
+
+### load_json(self) -> None
+
+Load JSON data from the file into the `_data` attribute.
+
+Raises:
+- `JSONFileErrorHandler`: If there is a file-related error accessing the JSON file.
+- `JSONDecodeErrorHandler`: If there is an error loading JSON data from the file.
+
+### save_json(self, data: Optional[JSONData] = None, indent: int = 2) -> None
+
+Save JSON data to the file.
+
+If data is provided, it updates the `_data` attribute as well.
+
+Parameters:
+- `data` (Optional[JSONData]): The data to be saved. Defaults to None.
+- `indent` (int): The indentation level for the JSON output. Defaults to 2.
+
+Raises:
+- `JSONFileErrorHandler`: If there is a file-related error accessing the JSON file.
+- `JSONEncodeErrorHandler`: If there is an error saving JSON data to the file.
+
+### backup_json(self, indent: int = 2) -> None
+
+Create a backup of the JSON file.
+
+Parameters:
+- `indent` (int): The indentation level for the JSON output. Defaults to 2.
+
+Raises:
+- `JSONFileErrorHandler`: If there is an error creating a backup of the JSON file.
+- `JSONDecodeErrorHandler`: If there is an error loading JSON data from the file.
+- `JSONEncodeErrorHandler`: If there is an error saving JSON data to the file.
+
+### make_directory(self) -> None
+
+Create the directory for the JSON file.
+
+Raises:
+- `JSONFileErrorHandler`: If there is an error creating the directory for the JSON file.
+
+## Example Usage
+
+Here's an example of how to use the `JSONBaseTemplate` class to load, modify, and save JSON data:
 
 ```python
-from jsonpycraft.json.base import JSONBaseTemplate
+from jsonpycraft.core.errors import JSONDecodeErrorHandler, JSONEncodeErrorHandler
+from jsonpycraft.core.base import JSONBaseTemplate
 
 # Path to your JSON file
-file_path = "path/to/your/json/file.json"
+file_path = "path/to/file.json"
 
-# Create an instance
+# Create an instance of JSONBaseTemplate
 json_template = JSONBaseTemplate(file_path)
-```
 
-## Loading JSON Data
-
-To load JSON data into the `_data` attribute, use the `load_json()` method. This method now raises exceptions on failure:
-
-```python
+# Load JSON data from the file
 try:
     json_template.load_json()
     print("JSON data loaded successfully!")
-except DecodeError as e:
+except JSONDecodeErrorHandler as e:
     print(f"Error loading JSON data: {e}")
-```
 
-## Saving JSON Data
+# Modify the loaded JSON data
+if json_template.data:
+    json_template.data["new_key"] = "new_value"
 
-Use `save_json()` to save JSON data. This method can also update the `_data` attribute if data is provided and raises exceptions on failure:
-
-```python
-data_to_save = {"key": "value"}
-
+# Save JSON data back to the file
 try:
-    json_template.save_json(data_to_save)
+    json_template.save_json()
     print("JSON data saved successfully!")
-except EncodeError as e:
+except JSONEncodeErrorHandler as e:
     print(f"Error saving JSON data: {e}")
 ```
 
-## Backing Up JSON Files
-
-Create a backup of the JSON file with `backup_json()`, which raises exceptions on failure:
-
-```python
-try:
-    json_template.backup_json()
-    print("JSON file successfully backed up!")
-except JSONError as e:
-    print(f"Error creating a backup of the JSON file: {e}")
-```
-
-## Creating the Directory
-
-Create the directory for the JSON file with `make_directory()`, which now raises exceptions on failure:
-
-```python
-try:
-    json_template.make_directory()
-    print("Directory created successfully!")
-except FileError as e:
-    print(f"Error creating the directory: {e}")
-```
+This example demonstrates loading JSON data from a file, making modifications, and saving it back to the same file while handling potential errors. You can adapt this code snippet to your specific use case.
 
 ## Conclusion
 
 The `JSONBaseTemplate` class streamlines JSON file management in Python. By leveraging this class, you can effectively load, save, back up, and manage directories for JSON files with robust error handling.
 
 For advanced usage and more detailed information, refer to the module's source code and additional documentation.
+
+### References
+
+- [Python JSON Documentation](https://docs.python.org/3/library/json.html)
+- [Python Exceptions Documentation](https://docs.python.org/3/library/exceptions.html)
