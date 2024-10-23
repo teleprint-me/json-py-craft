@@ -32,7 +32,7 @@ jobs:
         run: |
           poetry config pypi-token.pypi $PYPI_TOKEN
           poetry build
-          poetry publish --build
+          poetry publish --build --no-interaction
         env:
           PYPI_USERNAME: ${{ secrets.PYPI_USERNAME }}
           PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
@@ -42,6 +42,6 @@ jobs:
           poetry config repositories.testpypi https://test.pypi.org/legacy/
           poetry config pypi-token.testpypi $TEST_PYPI_TOKEN
           poetry build
-          poetry publish --build --repository testpypi
+          poetry publish --build --no-interaction --repository testpypi
         env:
           TEST_PYPI_TOKEN: ${{ secrets.TEST_PYPI_TOKEN }}
