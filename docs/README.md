@@ -25,3 +25,6 @@ Welcome to the JSONPyCraft documentation index. This index provides quick links 
 - [JSON List Template Diagram](puml/json/JSONListTemplate.puml): Diagram showcasing the structure of the JSONListTemplate class.
 - [JSON Map Template Diagram](puml/json/JSONMapTemplate.puml): UML diagram for the JSONMapTemplate class.
 - [ConfigurationManager Diagram](puml/manager/ConfigurationManager.puml): UML diagram of the ConfigurationManager class.
+
+### Poetry and PyPI Build
+- [Build Scripts](build_scripts.md): Overview of the build process with Poetry for publishing to PyPI and TestPyPI, including usage instructions and script details.
