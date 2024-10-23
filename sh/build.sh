@@ -7,6 +7,6 @@ set -e  # Exit immediately if a command exits with a non-zero status
 echo "Building the package..."
 poetry build
 echo "Publishing to TestPyPI..."
-poetry publish --build --repository pypi
+poetry publish --build
 echo "Installing from PyPI..."
-pip install jsonpycraft
+pip install -U jsonpycraft

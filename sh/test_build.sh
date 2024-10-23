@@ -9,4 +9,4 @@ poetry build
 echo "Publishing to TestPyPI..."
 poetry publish --build --repository testpypi
 echo "Installing from TestPyPI..."
-pip install --index-url https://test.pypi.org/simple/ jsonpycraft
+pip install -U -i https://test.pypi.org/simple/ jsonpycraft
