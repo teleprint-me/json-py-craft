@@ -12,7 +12,7 @@ python-dotenv = "^1.0.0"
 
 [tool.poetry.dev-dependencies]
 bpython = "^0.24"
-black = "^24.10.0"
+black = "^25.1.0"
 isort = "^5.13.2"
 flake8 = "^7.1.1"
 pytest = "^8.3.3"
