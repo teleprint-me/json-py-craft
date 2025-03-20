@@ -15,7 +15,7 @@ bpython = "^0.24"
 black = "^25.1.0"
 isort = "^5.13.2"
 flake8 = "^7.1.1"
-pytest = "^8.3.3"
+pytest = "^8.3.5"
 build = "^1.0.3"
 mkdocs = "^1.6.1"
 mkdocstrings = {version = "^0.26.2", extras = ["python"]}
