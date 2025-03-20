@@ -5,7 +5,13 @@
 
 version: 2
 updates:
-  - package-ecosystem: "pip" # See documentation for possible values
+  - package-ecosystem: "pip"
     directory: "/" # Location of package manifests
     schedule:
-      interval: "monthly"
+      interval: "weekly"
+    groups:
+      support-dependencies:
+        applies-to: version-updates # Applies the group rule to version updates
+        patterns:
+          - "jsonpycraft"
+          - "*" # A wildcard that matches all dependencies
