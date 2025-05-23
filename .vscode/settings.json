@@ -19,13 +19,8 @@
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "python.analysis.extraPaths": [
-    "${workspaceFolder}/.venv/bin",
-    "${workspaceFolder}/.venv/lib/python3.12/site-packages"
-  ],
   "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
   "python.languageServer": "Jedi",
-  "python.analysis.typeCheckingMode": "strict",
   "[python]": {
     "editor.defaultFormatter": "ms-python.black-formatter",
     "editor.formatOnSave": true,
