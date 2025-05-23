@@ -1,6 +1,7 @@
 """
 jsonpycraft/manager/configuration.py
 """
+
 import logging
 import os
 from logging import Logger
@@ -102,7 +103,7 @@ class ConfigurationManager(Singleton):
         keys = key.split(".")
         return self._map_template.read_nested(*keys) or default
 
-    def set_value(self, key: str, value: Any) -> bool:
+    def set_value(self, key: str, value: Any, overwrite: bool = False) -> bool:
         """
         Set a configuration value for the provided key.
 
@@ -114,6 +115,7 @@ class ConfigurationManager(Singleton):
             key (str): The key to set the value for. You can use dot notation to specify nested keys for
                 setting deeply nested values.
             value (Any): The value to set.
+            overwrite (bool): Overwrite exiting non-empty dictionaries. Default is False.
 
         Returns:
             bool: True if the value was set successfully, False otherwise.
@@ -129,7 +131,9 @@ class ConfigurationManager(Singleton):
             necessary nested structure to set the value.
         """
         keys = key.split(".")
-        return self._map_template.update_nested(value, *keys)
+        return self._map_template.update_nested(value, *keys, overwrite=overwrite)
+        # NOTE: Overwriting clears the existing structure and creates unpredictable results.
+        # The sanest patch for now is to allow users to opt-in if desired.
 
     def evaluate_path(
         self, key: str, default_path: Optional[str] = None, default_type: str = "dir"

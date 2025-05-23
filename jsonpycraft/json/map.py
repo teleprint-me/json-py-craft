@@ -1,6 +1,7 @@
 """
 jsonpycraft/json/map.py
 """
+
 from logging import Logger
 from typing import Any, Optional
 
@@ -153,7 +154,7 @@ class JSONMapTemplate(JSONBaseTemplate):
         else:
             return self.create(key, value)
 
-    def update_nested(self, value: Any, *keys: str, overwrite: bool = True) -> bool:
+    def update_nested(self, value: Any, *keys: str, overwrite: bool = False) -> bool:
         """
         Update the value associated with a nested key hierarchy in the mapping.
 
@@ -162,7 +163,7 @@ class JSONMapTemplate(JSONBaseTemplate):
         Args:
             value (Any): The value to associate with the nested keys hierarchy.
             keys (str): The keys hierarchy for the nested value.
-            overwrite (bool): Overwrite exiting non-empty dictionaries. Default is True.
+            overwrite (bool): Overwrite exiting non-empty dictionaries. Default is False.
 
         Returns:
             bool: True if the value was updated, False if a new nested key-value pair was created.
