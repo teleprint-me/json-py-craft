@@ -62,7 +62,7 @@ Raises:
 - `JSONDecodeErrorHandler`: If there is an error loading JSON data from the file.
 - `JSONEncodeErrorHandler`: If there is an error saving JSON data to the file.
 
-### make_directory(self) -> None
+### mkdir(self) -> None
 
 Create the directory for the JSON file.
 

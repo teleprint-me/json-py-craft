@@ -23,7 +23,7 @@ class JSONBaseTemplate extends Protocol {
     ' Create a backup of the JSON file. Returns True if successful, False otherwise.
     + bool backup_json(indent: int)
     ' Create the directory for the JSON file. Returns True if successful, False otherwise.
-    + bool make_directory()
+    + bool mkdir()
 }
 
 JSONBaseTemplate <|-- JSONListTemplate

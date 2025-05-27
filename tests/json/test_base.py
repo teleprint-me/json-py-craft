@@ -1,6 +1,7 @@
 """
 tests/json/test_base.py
 """
+
 import json
 import os
 from pathlib import Path
@@ -77,7 +78,7 @@ def test_json_directory_creation(json_base_template, tmp_path):
         # Remove the file first to ensure the directory is empty
         (dir_path / json_base_template.file_path.name).unlink()
         dir_path.rmdir()  # Ensure the directory doesn't exist before the test
-    json_base_template.make_directory()
+    json_base_template.mkdir()
     assert dir_path.exists() is True
 
 
@@ -137,7 +138,7 @@ def test_directory_creation_with_existing_file(tmp_path):
     json_template = JSONBaseTemplate(str(conflicting_file / "test.json"))
 
     with pytest.raises(JSONFileErrorHandler):
-        json_template.make_directory()
+        json_template.mkdir()
 
     # Cleanup after the test
     if conflicting_file.exists():

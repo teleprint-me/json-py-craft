@@ -8,6 +8,7 @@ REFERENCE:
     https://docs.python.org/3/library/json.html
     https://docs.python.org/3/library/exceptions.html
 """
+
 import json
 from pathlib import Path
 from typing import Optional, Protocol
@@ -135,7 +136,7 @@ class JSONBaseTemplate(Protocol):
         except EncodeError as e:
             raise JSONEncodeErrorHandler(f"Error saving JSON to {self._file_path}: {e}")
 
-    def make_directory(self) -> None:
+    def mkdir(self) -> None:
         """
         Create the directory for the JSON file.
 
