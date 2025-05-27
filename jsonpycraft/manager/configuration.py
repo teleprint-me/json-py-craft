@@ -41,6 +41,14 @@ class ConfigurationManager(Singleton):
 
         self._indent = indent
 
+    @property
+    def keys(self) -> list[str]:
+        return self._map_template.keys
+
+    @property
+    def data(self) -> JSONMap:
+        return self._map_template.data
+
     def mkdir(self) -> None:
         """
         Create the directory for the JSON file.
@@ -48,7 +56,7 @@ class ConfigurationManager(Singleton):
         Raises:
             JSONFileErrorHandler: If there is an error creating the directory for the JSON file.
         """
-        return self._map_template.make_directory()
+        return self._map_template.mkdir()
 
     def load(self) -> None:
         """
