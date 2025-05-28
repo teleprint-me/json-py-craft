@@ -5,6 +5,7 @@ jsonpycraft/manager/configuration.py
 import logging
 import os
 from logging import Logger
+from pathlib import Path
 from typing import Any, Optional
 
 import dotenv
@@ -42,11 +43,33 @@ class ConfigurationManager(Singleton):
         self._indent = indent
 
     @property
+    def file_path(self) -> Path:
+        """
+        Get the path to the JSON file.
+
+        Returns:
+            Path: The file path.
+        """
+        return self._map_template.file_path
+
+    @property
     def keys(self) -> list[str]:
+        """
+        Get a list of all keys in the mapping.
+
+        Returns:
+            list[str]: A list of keys in the mapping.
+        """
         return self._map_template.keys
 
     @property
     def data(self) -> JSONMap:
+        """
+        Get the underlying JSON data structure.
+
+        Returns:
+            JSONData (Union[JSONMap, JSONList]): The underlying data structure.
+        """
         return self._map_template.data
 
     def mkdir(self) -> None:
@@ -308,9 +331,7 @@ class ConfigurationManager(Singleton):
                 "%(asctime)s - %(filename)s:%(lineno)d - %(levelname)s - %(message)s"
             )
 
-        default_log_dir = "/var/log/jsonpycraft/"  # Default log directory
-        log_file_path = self.evaluate_path(key, default_log_dir)
-
+        log_file_path = self.evaluate_path(key, "/var/log/jsonpycraft/")
         log_level = log_info.get("level", level)
         logger = logging.getLogger(logger_name)
 
