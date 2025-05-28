@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "jsonpycraft"
-version = "0.1.7"
+version = "0.1.8"
 description = "JsonPyCraft is a specialized Python toolkit designed for efficient and structured JSON management."
 authors = ["Austin Berrio <aberrio@teleprint.me>"]
 license = "AGPL-3.0-or-later"
