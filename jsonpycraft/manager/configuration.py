@@ -99,7 +99,7 @@ class ConfigurationManager(Singleton):
             JSONFileErrorHandler: If there is a file-related error accessing the JSON file.
             JSONEncodeErrorHandler: If there is an error saving JSON data to the file.
         """
-        return self._map_template.save_json(self._map_template.data, self._indent)
+        return self._map_template.save_json(indent=self._indent)
 
     def backup(self) -> None:
         """
@@ -110,7 +110,20 @@ class ConfigurationManager(Singleton):
             JSONDecodeErrorHandler: If there is an error loading JSON data from the file.
             JSONEncodeErrorHandler: If there is an error saving JSON data to the file.
         """
-        return self._map_template.backup_json(self._indent)
+        return self._map_template.backup_json(indent=self._indent)
+
+    def reset(self, initial_data: Optional[JSONMap] = None, save: bool = True) -> None:
+        """
+        Reset the configuration to the given initial data (or to an empty dict).
+        Optionally saves the configuration to disk.
+
+        Args:
+            initial_data (Optional[JSONMap]): The new config data to use. If None, uses {}.
+            save (bool): Whether to save immediately after reset.
+        """
+        self._map_template._data = initial_data if initial_data is not None else {}
+        if save:
+            self.save()
 
     def get_value(self, key: str, default: Optional[Any] = None) -> Any:
         """
