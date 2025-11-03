@@ -111,14 +111,14 @@ wcwidth = ">=0.1.4"
 
 [[package]]
 name = "bpython"
-version = "0.25"
-description = ""
+version = "0.26"
+description = "A fancy curses interface to the Python interactive interpreter"
 optional = false
 python-versions = ">=3.9"
 groups = ["dev"]
 files = [
-    {file = "bpython-0.25-py3-none-any.whl", hash = "sha256:28fd86008ca5ef6100ead407c9743aa60c51293a18ba5b18fcacea7f5b7f2257"},
-    {file = "bpython-0.25.tar.gz", hash = "sha256:c246fc909ef6dcc26e9d8cb4615b0e6b1613f3543d12269b19ffd0782166c65b"},
+    {file = "bpython-0.26-py3-none-any.whl", hash = "sha256:91bdbbe667078677dc6b236493fc03e47a04cd099630a32ca3f72d6d49b71e20"},
+    {file = "bpython-0.26.tar.gz", hash = "sha256:f79083e1e3723be9b49c9994ad1dd3a19ccb4d0d4f9a6f5b3a73bef8bc327433"},
 ]
 
 [package.dependencies]
@@ -132,7 +132,7 @@ requests = "*"
 [package.extras]
 clipboard = ["pyperclip"]
 jedi = ["jedi (>=0.16)"]
-urwid = ["urwid"]
+urwid = ["urwid (<3.0)"]
 watch = ["watchdog"]
 
 [[package]]
@@ -733,14 +733,14 @@ pyyaml = ">=5.1"
 
 [[package]]
 name = "mkdocs-material"
-version = "9.6.22"
+version = "9.6.23"
 description = "Documentation that simply works"
 optional = false
 python-versions = ">=3.8"
 groups = ["dev"]
 files = [
-    {file = "mkdocs_material-9.6.22-py3-none-any.whl", hash = "sha256:14ac5f72d38898b2f98ac75a5531aaca9366eaa427b0f49fc2ecf04d99b7ad84"},
-    {file = "mkdocs_material-9.6.22.tar.gz", hash = "sha256:87c158b0642e1ada6da0cbd798a3389b0bc5516b90e5ece4a0fb939f00bacd1c"},
+    {file = "mkdocs_material-9.6.23-py3-none-any.whl", hash = "sha256:3bf3f1d82d269f3a14ed6897bfc3a844cc05e1dc38045386691b91d7e6945332"},
+    {file = "mkdocs_material-9.6.23.tar.gz", hash = "sha256:62ebc9cdbe90e1ae4f4e9b16a6aa5c69b93474c7b9e79ebc0b11b87f9f055e00"},
 ]
 
 [package.dependencies]
@@ -1238,4 +1238,4 @@ files = [
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.12"
-content-hash = "2a6acab960d79088d13cc9fdb0a67c3b00e13a78198c35c0abcee822982ffd6f"
+content-hash = "6e06238675a96f2ff48b84fda16f9a6b77bf7b1e9da813d5d33b96bc414ee707"
