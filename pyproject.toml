@@ -12,7 +12,7 @@ python-dotenv = "^1.1.0"
 
 [tool.poetry.group.dev.dependencies]
 bpython = ">=0.25,<0.27"
-black = "^25.1.0"
+black = ">=25.1,<27.0"
 isort = ">=6.0.1,<8.0.0"
 flake8 = "^7.2.0"
 pytest = ">=8.3.5,<10.0.0"
